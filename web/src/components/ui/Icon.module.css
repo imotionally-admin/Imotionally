@@ -1,0 +1,17 @@
+.icon {
+  flex-shrink: 0;
+  width: var(--icon-size);
+  height: var(--icon-size);
+}
+
+.sm {
+  --icon-size: var(--space-4);
+}
+
+.md {
+  --icon-size: var(--space-5);
+}
+
+.lg {
+  --icon-size: var(--space-6);
+}

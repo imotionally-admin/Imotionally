@@ -1,0 +1,150 @@
+:root {
+  color-scheme: light;
+
+  --color-primary-50: #f2f8fe;
+  --color-primary-100: #e3f0fc;
+  --color-primary-200: #c9e2f9;
+  --color-primary-300: #a8d0f3;
+  --color-primary-400: #86bbea;
+  --color-primary-500: #6aa6dc;
+  --color-primary-600: #4f8bc2;
+  --color-primary-700: #3d6e9d;
+  --color-primary-800: #2f5379;
+  --color-primary-900: #223c58;
+
+  --color-secondary-50: #f7f3fd;
+  --color-secondary-100: #ede5fa;
+  --color-secondary-200: #dccff5;
+  --color-secondary-300: #c6b3ee;
+  --color-secondary-400: #ae96e4;
+  --color-secondary-500: #957bd6;
+  --color-secondary-600: #7a60b8;
+  --color-secondary-700: #604a93;
+  --color-secondary-800: #473770;
+  --color-secondary-900: #30264d;
+
+  --color-tertiary-50: #f1faf4;
+  --color-tertiary-100: #e0f3e6;
+  --color-tertiary-200: #c3e8cf;
+  --color-tertiary-300: #9fd9b3;
+  --color-tertiary-400: #7bc796;
+  --color-tertiary-500: #5fb07c;
+  --color-tertiary-600: #488e61;
+  --color-tertiary-700: #38704c;
+  --color-tertiary-800: #2b5539;
+  --color-tertiary-900: #1e3b28;
+
+  --color-neutral-0: #ffffff;
+  --color-neutral-50: #f8fafc;
+  --color-neutral-100: #f1f5f9;
+  --color-neutral-200: #e2e8f0;
+  --color-neutral-300: #cbd5e1;
+  --color-neutral-400: #94a3b8;
+  --color-neutral-500: #64748b;
+  --color-neutral-600: #475569;
+  --color-neutral-700: #334155;
+  --color-neutral-800: #1e293b;
+  --color-neutral-900: #0f172a;
+
+  --color-danger-100: #fdeeee;
+  --color-danger-500: #d96666;
+  --color-danger-700: #a63d3d;
+  --color-warning-100: #fdf5e0;
+  --color-warning-500: #e0a93b;
+
+  --color-bg: var(--color-neutral-0);
+  --color-surface: var(--color-neutral-0);
+  --color-surface-tint: var(--color-primary-50);
+  --color-surface-alt: var(--color-neutral-50);
+  --color-text: var(--color-neutral-700);
+  --color-text-muted: var(--color-neutral-500);
+  --color-heading: var(--color-neutral-900);
+  --color-border: var(--color-neutral-200);
+  --color-border-strong: var(--color-neutral-300);
+  --color-link: var(--color-primary-700);
+  --color-link-hover: var(--color-secondary-700);
+  --color-focus: var(--color-secondary-500);
+  --color-action: var(--color-primary-300);
+  --color-action-hover: var(--color-primary-400);
+  --color-on-action: var(--color-neutral-900);
+  --color-accent: var(--color-secondary-300);
+  --color-accent-hover: var(--color-secondary-400);
+  --color-on-accent: var(--color-neutral-900);
+  --color-success: var(--color-tertiary-600);
+  --color-success-bg: var(--color-tertiary-100);
+
+  --gradient-soft: linear-gradient(135deg, var(--color-primary-50), var(--color-secondary-50) 55%, var(--color-tertiary-50));
+  --gradient-action: linear-gradient(135deg, var(--color-primary-300), var(--color-secondary-300));
+
+  --font-heading: var(--font-fredoka), ui-rounded, system-ui, sans-serif;
+  --font-body: var(--font-nunito), system-ui, -apple-system, "Segoe UI", sans-serif;
+
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-md: 1.125rem;
+  --text-lg: clamp(1.125rem, 1.05rem + 0.4vw, 1.25rem);
+  --text-xl: clamp(1.25rem, 1.1rem + 0.75vw, 1.5rem);
+  --text-2xl: clamp(1.5rem, 1.2rem + 1.5vw, 2rem);
+  --text-3xl: clamp(1.875rem, 1.4rem + 2.4vw, 2.75rem);
+  --text-4xl: clamp(2.25rem, 1.5rem + 3.75vw, 3.75rem);
+
+  --weight-regular: 400;
+  --weight-medium: 500;
+  --weight-semibold: 600;
+  --weight-bold: 700;
+
+  --leading-tight: 1.15;
+  --leading-snug: 1.3;
+  --leading-normal: 1.6;
+  --tracking-wide: 0.04em;
+
+  --space-0: 0;
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  --space-20: 5rem;
+  --space-24: 6rem;
+  --section-space: clamp(3rem, 2rem + 5vw, 6rem);
+
+  --radius-sm: 0.375rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.5rem;
+  --radius-pill: 999rem;
+
+  --border-width: 0.0625rem;
+  --border-width-thick: 0.125rem;
+  --focus-ring-width: 0.1875rem;
+  --focus-ring-offset: 0.125rem;
+
+  --shadow-sm: 0 0.0625rem 0.25rem rgb(15 23 42 / 0.06);
+  --shadow-md: 0 0.25rem 1rem rgb(15 23 42 / 0.08);
+  --shadow-lg: 0 0.75rem 2rem rgb(15 23 42 / 0.12);
+  --shadow-glow-primary: 0 0.5rem 1.5rem rgb(106 166 220 / 0.35);
+
+  --container-max: 75rem;
+  --container-narrow: 48rem;
+  --container-pad: clamp(1rem, 0.5rem + 2.5vw, 2rem);
+  --measure: 65ch;
+  --header-height: 4.5rem;
+
+  --z-base: 1;
+  --z-sticky: 100;
+  --z-drawer: 200;
+  --z-modal: 300;
+  --z-toast: 400;
+
+  --duration-fast: 0.15s;
+  --duration-base: 0.25s;
+  --duration-slow: 0.45s;
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+}
