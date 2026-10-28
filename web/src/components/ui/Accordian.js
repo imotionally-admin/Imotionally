@@ -2,7 +2,7 @@
 
 import { useId, useState } from "react";
 import Icon from "./Icon";
-import styles from "./Accordion.module.css";
+import styles from "./Accordian.module.css";
 
 export default function Accordion({ items, defaultOpenId = null }) {
   const [openId, setOpenId] = useState(defaultOpenId);

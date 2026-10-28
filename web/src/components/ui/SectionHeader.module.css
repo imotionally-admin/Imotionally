@@ -1,0 +1,39 @@
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  margin-bottom: var(--space-10);
+}
+
+.text {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.subtitle {
+  max-width: var(--measure);
+  font-size: var(--text-md);
+  color: var(--color-text-muted);
+}
+
+.center {
+  align-items: center;
+  text-align: center;
+}
+
+.center .subtitle {
+  margin-inline: auto;
+}
+
+.extra {
+  flex-shrink: 0;
+}
+
+@media (min-width: 40em) {
+  .split {
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: space-between;
+  }
+}

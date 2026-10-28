@@ -8,6 +8,7 @@
   line-height: var(--leading-snug);
   letter-spacing: var(--tracking-wide);
   white-space: nowrap;
+  gap: var(--space-1);
 }
 
 .primary {

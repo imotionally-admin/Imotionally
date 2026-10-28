@@ -1,7 +1,7 @@
 import { useId } from "react";
 import styles from "./Field.module.css";
 
-export default function Input({ label, hint, error, id, className = "", ...rest }) {
+export default function Input({ label,  hideLabel = false, hint, error, id, className = "", ...rest }) {
   const autoId = useId();
   const inputId = id ?? autoId;
   const hintId = hint && !error ? `${inputId}-hint` : undefined;
@@ -11,7 +11,7 @@ export default function Input({ label, hint, error, id, className = "", ...rest 
   return (
     <div className={`${styles.field} ${className}`}>
       {label && (
-        <label htmlFor={inputId} className={styles.label}>
+        <label htmlFor={inputId} className={`${styles.label} ${hideLabel ? "visually-hidden" : ""}`}>
           {label}
         </label>
       )}

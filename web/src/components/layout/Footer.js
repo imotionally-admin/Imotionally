@@ -1,9 +1,12 @@
 import Link from "next/link";
+import { cacheLife } from "next/cache";
 import Icon from "@/components/ui/Icon";
 import { FOOTER_COLUMNS, SITE_NAME, SOCIAL_LINKS, STUDIO_NAME } from "@/utils/constants";
 import styles from "./Footer.module.css";
 
-export default function Footer() {
+export default async function Footer() {
+  "use cache";
+  cacheLife("days");
   const year = 2026;
   const socials = SOCIAL_LINKS.filter((social) => social.href);
 

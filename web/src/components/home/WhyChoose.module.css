@@ -1,0 +1,62 @@
+.grid {
+  display: grid;
+  align-items: center;
+  gap: var(--space-10);
+}
+
+.media {
+  box-shadow: var(--shadow-md);
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+
+.intro {
+  color: var(--color-text-muted);
+}
+
+.points {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  list-style: none;
+}
+
+.point {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+}
+
+.check {
+  display: grid;
+  flex-shrink: 0;
+  place-items: center;
+  width: var(--space-6);
+  height: var(--space-6);
+  margin-top: var(--space-1);
+  border-radius: var(--radius-pill);
+  background: var(--color-tertiary-100);
+  color: var(--color-tertiary-700);
+}
+
+.pointTitle {
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  font-weight: var(--weight-bold);
+}
+
+.pointText {
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+}
+
+@media (min-width: 56em) {
+  .grid {
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-16);
+  }
+}

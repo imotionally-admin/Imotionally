@@ -1,0 +1,88 @@
+.art {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+.ground {
+  fill: var(--color-primary-100);
+}
+
+.heart {
+  fill: var(--color-primary-300);
+  stroke: var(--color-heading);
+  stroke-width: 3;
+  stroke-linejoin: round;
+}
+
+.eye {
+  fill: var(--color-heading);
+}
+
+.smile {
+  fill: none;
+  stroke: var(--color-heading);
+  stroke-width: 4;
+  stroke-linecap: round;
+}
+
+.cheek {
+  fill: var(--color-secondary-200);
+}
+
+.page,
+.pageAlt {
+  stroke: var(--color-heading);
+  stroke-width: 3;
+  stroke-linejoin: round;
+}
+
+.page {
+  fill: var(--color-secondary-100);
+}
+
+.pageAlt {
+  fill: var(--color-tertiary-100);
+}
+
+.sparkle,
+.sparkleAlt {
+  stroke: var(--color-heading);
+  stroke-width: 2;
+  stroke-linejoin: round;
+}
+
+.sparkle {
+  fill: var(--color-tertiary-300);
+}
+
+.sparkleAlt {
+  fill: var(--color-secondary-300);
+}
+
+.float,
+.bookA,
+.bookB {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: float calc(var(--duration-slow) * 10) ease-in-out infinite;
+}
+
+.bookA {
+  animation-delay: calc(var(--duration-slow) * -3);
+}
+
+.bookB {
+  animation-delay: calc(var(--duration-slow) * -6);
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-0.75rem);
+  }
+}
