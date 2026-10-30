@@ -1,10 +1,6 @@
 export const HOW_IT_WORKS_STEPS = [
-  { title: "Name", text: "Enter the recipient's name so it appears throughout the story." },
-  { title: "Cover Colour", text: "Choose from our curated cover palette, such as Sky Blue, Rose Gold or Midnight." },
-  { title: "Character", text: "Pick pre-designed character illustrations that match the recipient's look." },
-  { title: "Dedication", text: "Add a heartfelt dedication message printed on the very first page, free of charge." },
-  { title: "Format", text: "Choose between softcover, hardcover or digital. Price varies by format and is shown at checkout." },
-  { title: "Review", text: "Review your personalization summary of name, colour, character and dedication before checkout." },
+  { title: "Enter Child's Name", text: "Provide their name, select gender, and customize skin tone, hair color, and style to match their look" },
+  { title: "Write a loving Dedication", text: "Add a heartfelt dedication message printed on the very first page, free of charge." },
   { title: "Preview & Order", text: "Flip through each page in high resolution before completing checkout." },
 ];
 

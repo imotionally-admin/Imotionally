@@ -12,10 +12,8 @@
 }
 
 .logo {
-  font-family: var(--font-heading);
-  font-size: var(--text-2xl);
-  font-weight: var(--weight-semibold);
-  color: var(--color-primary-700);
+  display: block;
+  width: clamp(8.5rem, 22vw, 12rem);
   text-decoration: none;
 }
 

@@ -1,5 +1,6 @@
 import Icon from "@/components/ui/Icon";
 import MediaFrame from "@/components/ui/MediaFrame";
+import BrandLogo from "@/components/ui/BrandLogo";
 import { WHY_CHOOSE_POINTS } from "@/lib/content/home";
 import styles from "./WhyChoose.module.css";
 
@@ -11,9 +12,11 @@ export default function WhyChoose() {
           <MediaFrame ratio="landscape" label="Emotional book showcase" className={styles.media} />
         </div>
         <div className={`${styles.content} reveal`}>
-          <h2 id="why-title">Why Choose an Imotionally Storybook?</h2>
+          <h2 id="why-title">
+            Why Choose an <BrandLogo className={styles.brandLogo} /> Storybook?
+          </h2>
           <p className={styles.intro}>
-            Unlike generic children&apos;s books, Imotionally stories place your child directly at the center
+            Unlike generic children&apos;s books, our stories place your child directly at the center
             of the narrative. We combine high-quality printing standards with emotionally intelligent stories
             that make every reading session meaningful.
           </p>

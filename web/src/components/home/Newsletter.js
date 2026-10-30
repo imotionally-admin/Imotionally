@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Button from "@/components/ui/Button";
+import BrandLogo from "@/components/ui/BrandLogo";
 import Icon from "@/components/ui/Icon";
 import Input from "@/components/ui/Input";
 import { useToast } from "@/context/ToastContext";
@@ -32,7 +33,9 @@ export default function Newsletter() {
         <span className={styles.icon} aria-hidden="true">
           <Icon name="mail" size="lg" />
         </span>
-        <h2 id="newsletter-title">Join the Imotionally Family</h2>
+        <h2 id="newsletter-title">
+          Join the <BrandLogo className={styles.brandLogo} /> Family
+        </h2>
         <p className={styles.text}>
           Get 10% off your first order, plus updates on new storybook releases, parenting tips and special
           Pitara Studio promotions.

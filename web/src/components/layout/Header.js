@@ -4,8 +4,9 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useCallback, useState } from "react";
 import Icon from "@/components/ui/Icon";
+import BrandLogo from "@/components/ui/BrandLogo";
 import MobileNav from "./MobileNav";
-import { NAV_LINKS, SITE_NAME } from "@/utils/constants";
+import { NAV_LINKS } from "@/utils/constants";
 import styles from "./Header.module.css";
 
 export default function Header({ cartCount = 0 }) {
@@ -23,7 +24,7 @@ export default function Header({ cartCount = 0 }) {
       <header className={styles.header}>
         <div className={`container ${styles.inner}`}>
           <Link href="/" className={styles.logo}>
-            {SITE_NAME}
+            <BrandLogo priority />
           </Link>
 
           <nav className={styles.nav} aria-label="Primary">

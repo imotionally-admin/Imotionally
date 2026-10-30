@@ -4,10 +4,15 @@ import styles from "./HowItWorks.module.css";
 
 export default function HowItWorks() {
   return (
-    <section id="how-it-works" className="section section--tint" aria-labelledby="how-it-works-title">
+    <section
+      id="how-it-works"
+      className={`section section--tint ${styles.section}`}
+      aria-labelledby="how-it-works-title"
+    >
       <div className="container">
         <SectionHeader
           id="how-it-works-title"
+          className={styles.header}
           title="How Personalization Works"
           subtitle="Creating a custom storybook only takes a few minutes, and the result lasts a lifetime."
         />

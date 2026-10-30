@@ -1,7 +1,7 @@
+import Image from "next/image";
 import Badge from "@/components/ui/Badge";
 import Button from "@/components/ui/Button";
 import Icon from "@/components/ui/Icon";
-import HeroArt from "./HeroArt";
 import styles from "./Hero.module.css";
 
 export default function Hero() {
@@ -29,9 +29,14 @@ export default function Hero() {
             </Button>
           </div>
         </div>
-        <div className={styles.art}>
-          <HeroArt />
-        </div>
+        <Image
+          src="/herobg.png"
+          alt="A smiling heart character surrounded by storybooks and stars"
+          width={626}
+          height={398}
+          priority
+          className={styles.art}
+        />
       </div>
     </section>
   );

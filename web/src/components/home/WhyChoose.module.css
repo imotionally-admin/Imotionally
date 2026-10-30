@@ -14,6 +14,13 @@
   gap: var(--space-5);
 }
 
+.brandLogo {
+  display: inline-block;
+  width: clamp(6.5rem, 22vw, 9rem);
+  margin-inline: 0.12em;
+  vertical-align: -0.2em;
+}
+
 .intro {
   color: var(--color-text-muted);
 }

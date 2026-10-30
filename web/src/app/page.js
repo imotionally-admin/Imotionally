@@ -5,21 +5,21 @@ import WhyChoose from "@/components/home/WhyChoose";
 import Testimonials from "@/components/home/Testimonials";
 import Faq from "@/components/home/Faq";
 import Newsletter from "@/components/home/Newsletter";
-import { getFeaturedBooks, getPublishedBooks } from "@/lib/data/books";
+import { getFeaturedBooks } from "@/lib/data/books";
 
 export const metadata = {
-  title: "Personalized Storybooks for Every Age",
+  title: "Imotionally",
   alternates: { canonical: "/" },
 };
 
 
 export default async function Home() {
-  const [featured, allBooks] = await Promise.all([getFeaturedBooks(3), getPublishedBooks()]);
+  const books = await getFeaturedBooks(3);
 
   return (
     <>
       <Hero />
-      <FeaturedBooks books={featured} totalCount={allBooks.length} />
+      <FeaturedBooks books={books} />
       <HowItWorks />
       <WhyChoose />
       <Testimonials />

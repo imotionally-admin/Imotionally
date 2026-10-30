@@ -1,12 +1,12 @@
-import { Fredoka, Nunito } from "next/font/google";
+import { Nunito, Playfair_Display } from "next/font/google";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import { ToastProvider } from "@/context/ToastContext";
 import "./globals.css";
 
-const fredoka = Fredoka({
+const playfairDisplay = Playfair_Display({
   subsets: ["latin"],
-  variable: "--font-fredoka",
+  variable: "--font-playfair-display",
   display: "swap",
 });
 
@@ -34,12 +34,12 @@ export const metadata = {
 export const viewport = {
   width: "device-width",
   initialScale: 1,
-  themeColor: "#a8d0f3",
+  themeColor: "#cdb8f0",
 };
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className={`${fredoka.variable} ${nunito.variable}`}>
+    <html lang="en" className={`${playfairDisplay.variable} ${nunito.variable}`}>
       <body>
   <a href="#main" className="skip-link">
     Skip to content

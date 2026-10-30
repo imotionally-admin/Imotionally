@@ -1,8 +1,16 @@
 import styles from "./SectionHeader.module.css";
 
-export default function SectionHeader({ id, title, subtitle, align = "center", as: Heading = "h2", children }) {
+export default function SectionHeader({
+  id,
+  title,
+  subtitle,
+  align = "center",
+  as: Heading = "h2",
+  className = "",
+  children,
+}) {
   return (
-    <div className={`${styles.header} ${styles[align]} reveal`}>
+    <div className={`${styles.header} ${styles[align]} ${className} reveal`}>
       <div className={styles.text}>
         <Heading id={id} className={styles.title}>
           {title}

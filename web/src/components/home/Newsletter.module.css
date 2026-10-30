@@ -6,6 +6,13 @@
   text-align: center;
 }
 
+.brandLogo {
+  display: inline-block;
+  width: clamp(6.5rem, 22vw, 9rem);
+  margin-inline: 0.12em;
+  vertical-align: -0.2em;
+}
+
 .icon {
   display: grid;
   place-items: center;

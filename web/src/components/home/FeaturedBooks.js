@@ -4,18 +4,19 @@ import Button from "@/components/ui/Button";
 import SectionHeader from "@/components/ui/SectionHeader";
 import styles from "./FeaturedBooks.module.css";
 
-export default function FeaturedBooks({ books, totalCount }) {
+export default function FeaturedBooks({ books }) {
   return (
     <section className="section" aria-labelledby="collection-title">
       <div className="container">
         <SectionHeader
           id="collection-title"
           align="split"
+          className={styles.sectionHeader}
           title="Our Personalized Collection"
           subtitle="Stories tailored to different age groups and meaningful life moments."
         >
           <Link href="/books" className={styles.viewAll}>
-            View all {totalCount} books
+            View all books
           </Link>
         </SectionHeader>
 

@@ -1,16 +1,16 @@
 :root {
   color-scheme: light;
 
-  --color-primary-50: #f2f8fe;
-  --color-primary-100: #e3f0fc;
-  --color-primary-200: #c9e2f9;
-  --color-primary-300: #a8d0f3;
-  --color-primary-400: #86bbea;
-  --color-primary-500: #6aa6dc;
-  --color-primary-600: #4f8bc2;
-  --color-primary-700: #3d6e9d;
-  --color-primary-800: #2f5379;
-  --color-primary-900: #223c58;
+  --color-primary-50: #faf7fe;
+  --color-primary-100: #f2ecfc;
+  --color-primary-200: #e3d8f8;
+  --color-primary-300: #cdb8f0;
+  --color-primary-400: #b69be3;
+  --color-primary-500: #9a7bcf;
+  --color-primary-600: #805fb5;
+  --color-primary-700: #684997;
+  --color-primary-800: #503976;
+  --color-primary-900: #382950;
 
   --color-secondary-50: #f7f3fd;
   --color-secondary-100: #ede5fa;
@@ -23,28 +23,28 @@
   --color-secondary-800: #473770;
   --color-secondary-900: #30264d;
 
-  --color-tertiary-50: #f1faf4;
-  --color-tertiary-100: #e0f3e6;
-  --color-tertiary-200: #c3e8cf;
-  --color-tertiary-300: #9fd9b3;
-  --color-tertiary-400: #7bc796;
-  --color-tertiary-500: #5fb07c;
-  --color-tertiary-600: #488e61;
-  --color-tertiary-700: #38704c;
-  --color-tertiary-800: #2b5539;
-  --color-tertiary-900: #1e3b28;
+  --color-tertiary-50: #fffdf2;
+  --color-tertiary-100: #fff9d6;
+  --color-tertiary-200: #fff4bd;
+  --color-tertiary-300: #fff0a0;
+  --color-tertiary-400: #f3dc72;
+  --color-tertiary-500: #d6bd4f;
+  --color-tertiary-600: #a89038;
+  --color-tertiary-700: #806d2c;
+  --color-tertiary-800: #5d4f22;
+  --color-tertiary-900: #403618;
 
   --color-neutral-0: #ffffff;
-  --color-neutral-50: #f8fafc;
-  --color-neutral-100: #f1f5f9;
-  --color-neutral-200: #e2e8f0;
-  --color-neutral-300: #cbd5e1;
-  --color-neutral-400: #94a3b8;
-  --color-neutral-500: #64748b;
-  --color-neutral-600: #475569;
-  --color-neutral-700: #334155;
-  --color-neutral-800: #1e293b;
-  --color-neutral-900: #0f172a;
+  --color-neutral-50: #fdfbf8;
+  --color-neutral-100: #f6f1ec;
+  --color-neutral-200: #e9dfd6;
+  --color-neutral-300: #d4c5b8;
+  --color-neutral-400: #a89588;
+  --color-neutral-500: #7a685b;
+  --color-neutral-600: #5e4d41;
+  --color-neutral-700: #47382e;
+  --color-neutral-800: #33251b;
+  --color-neutral-900: #27180d;
 
   --color-danger-100: #fdeeee;
   --color-danger-500: #d96666;
@@ -70,13 +70,13 @@
   --color-accent: var(--color-secondary-300);
   --color-accent-hover: var(--color-secondary-400);
   --color-on-accent: var(--color-neutral-900);
-  --color-success: var(--color-tertiary-600);
-  --color-success-bg: var(--color-tertiary-100);
+  --color-success: #488e61;
+  --color-success-bg: #e0f3e6;
 
   --gradient-soft: linear-gradient(135deg, var(--color-primary-50), var(--color-secondary-50) 55%, var(--color-tertiary-50));
   --gradient-action: linear-gradient(135deg, var(--color-primary-300), var(--color-secondary-300));
 
-  --font-heading: var(--font-fredoka), ui-rounded, system-ui, sans-serif;
+  --font-heading: var(--font-playfair-display), Georgia, serif;
   --font-body: var(--font-nunito), system-ui, -apple-system, "Segoe UI", sans-serif;
 
   --text-xs: 0.75rem;
@@ -125,10 +125,10 @@
   --focus-ring-width: 0.1875rem;
   --focus-ring-offset: 0.125rem;
 
-  --shadow-sm: 0 0.0625rem 0.25rem rgb(15 23 42 / 0.06);
-  --shadow-md: 0 0.25rem 1rem rgb(15 23 42 / 0.08);
-  --shadow-lg: 0 0.75rem 2rem rgb(15 23 42 / 0.12);
-  --shadow-glow-primary: 0 0.5rem 1.5rem rgb(106 166 220 / 0.35);
+  --shadow-sm: 0 0.0625rem 0.25rem rgb(39 24 13 / 0.06);
+  --shadow-md: 0 0.25rem 1rem rgb(39 24 13 / 0.08);
+  --shadow-lg: 0 0.75rem 2rem rgb(39 24 13 / 0.12);
+  --shadow-glow-primary: 0 0.5rem 1.5rem rgb(205 184 240 / 0.35);
 
   --container-max: 100rem;
   --container-narrow: 48rem;

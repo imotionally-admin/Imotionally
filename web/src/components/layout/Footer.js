@@ -1,7 +1,8 @@
 import Link from "next/link";
 import { cacheLife } from "next/cache";
 import Icon from "@/components/ui/Icon";
-import { FOOTER_COLUMNS, SITE_NAME, SOCIAL_LINKS, STUDIO_NAME } from "@/utils/constants";
+import BrandLogo from "@/components/ui/BrandLogo";
+import { FOOTER_COLUMNS, SOCIAL_LINKS, STUDIO_NAME } from "@/utils/constants";
 import styles from "./Footer.module.css";
 
 export default async function Footer() {
@@ -15,7 +16,7 @@ export default async function Footer() {
       <div className={`container ${styles.grid}`}>
         <div className={styles.brand}>
           <Link href="/" className={styles.logo}>
-            {SITE_NAME}
+            <BrandLogo />
           </Link>
           <p className={styles.tagline}>
             Premium personalized storybooks that make every reader the hero of their own story.

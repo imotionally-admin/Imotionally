@@ -9,7 +9,6 @@ export default function Testimonials() {
         <SectionHeader
           id="testimonials-title"
           title="Loved by Parents & Children"
-          subtitle="Read honest experiences from families who cherish their personalized storybooks."
         />
         <ul role="list" className={styles.grid}>
           {TESTIMONIALS.map((item) => (

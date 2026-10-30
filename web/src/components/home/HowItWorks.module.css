@@ -1,3 +1,11 @@
+.section {
+  padding-block: clamp(5rem, 8vw, 8rem);
+}
+
+.header {
+  margin-bottom: var(--space-16);
+}
+
 .steps {
   --gap: var(--space-8);
   display: flex;
@@ -11,15 +19,15 @@
   flex: 0 1 100%;
   flex-direction: column;
   align-items: center;
-  gap: var(--space-3);
+  gap: var(--space-4);
   text-align: center;
 }
 
 .number {
   display: grid;
   place-items: center;
-  width: var(--space-12);
-  height: var(--space-12);
+  width: 3.5rem;
+  height: 3.5rem;
   border-radius: var(--radius-pill);
   background: var(--color-primary-100);
   font-family: var(--font-heading);
@@ -44,12 +52,12 @@
 }
 
 .title {
-  font-size: var(--text-lg);
+  font-size: var(--text-xl);
 }
 
 .text {
-  max-width: calc(var(--measure) / 2);
-  font-size: var(--text-sm);
+  max-width: 40ch;
+  font-size: var(--text-base);
   color: var(--color-text-muted);
 }
 
@@ -59,7 +67,7 @@
   }
 }
 
-@media (min-width: 56em) {
+@media (min-width: 72em) {
   .step {
     flex-basis: calc((100% - var(--gap) * 3) / 4);
   }
