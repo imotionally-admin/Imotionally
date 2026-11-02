@@ -6,6 +6,7 @@ export const NAV_LINKS = [
   { label: "Books", href: "/books" },
   { label: "How It Works", href: "/#how-it-works" },
   { label: "About", href: "/about" },
+  { label: "Contact", href: "/#footer" },
 ];
 
 export const FOOTER_COLUMNS = [

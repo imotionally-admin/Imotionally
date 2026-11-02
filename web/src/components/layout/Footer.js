@@ -12,7 +12,7 @@ export default async function Footer() {
   const socials = SOCIAL_LINKS.filter((social) => social.href);
 
   return (
-    <footer className={styles.footer}>
+    <footer id="footer" className={styles.footer}>
       <div className={`container ${styles.grid}`}>
         <div className={styles.brand}>
           <Link href="/" className={styles.logo}>
