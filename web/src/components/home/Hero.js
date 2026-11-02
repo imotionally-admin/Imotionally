@@ -1,42 +1,44 @@
 import Image from "next/image";
-import Badge from "@/components/ui/Badge";
 import Button from "@/components/ui/Button";
 import Icon from "@/components/ui/Icon";
 import styles from "./Hero.module.css";
 
 export default function Hero() {
   return (
-    <section className={styles.hero} aria-labelledby="hero-title">
-      <div className={`container ${styles.inner}`}>
+    <section id="home" className={styles.hero} aria-labelledby="hero-title">
+      <div className={styles.inner}>
         <div className={styles.content}>
-          <Badge variant="tertiary" className={styles.badge}>
+          <p className={styles.tag}>
             <Icon name="heart" size="sm" />
             Personalized stories &amp; gifts for every age
-          </Badge>
+          </p>
           <h1 id="hero-title" className={styles.title}>
             Give someone a story where they are the hero
           </h1>
-          <p className={styles.lead}>
-            Beautifully crafted, deeply personalized storybooks for kids and adults. Celebrate birthdays,
-            anniversaries, milestones and every relationship that matters.
+          <p className={`lead ${styles.lead}`}>
+            Beautifully crafted, deeply personalized storybooks for kids and adults. Celebrate
+            birthdays, anniversaries, milestones and every relationship that matters.
           </p>
           <div className={styles.actions}>
-            <Button href="/books" size="lg">
-              Explore All Stories
+            <Button href="/books" arrow={false}>
+              Explore all stories
             </Button>
-            <Button href="#how-it-works" variant="outline" size="lg">
-              See How It Works
+            <Button href="/#how-it-works" variant="ghost" arrow={false}>
+              See how it works
             </Button>
           </div>
         </div>
-        <Image
-          src="/herobg.png"
-          alt="A smiling heart character surrounded by storybooks and stars"
-          width={626}
-          height={398}
-          priority
-          className={styles.art}
-        />
+        <div className={styles.mediaWrap}>
+          <Image
+            src="/herobg.png"
+            alt="A smiling heart surrounded by storybooks and stars"
+            width={626}
+            height={398}
+            priority
+            sizes="(min-width: 56em) 50vw, 100vw"
+            className={styles.image}
+          />
+        </div>
       </div>
     </section>
   );

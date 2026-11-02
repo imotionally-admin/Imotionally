@@ -52,6 +52,34 @@ const ICONS = {
     </>
   ),
   facebook: <path d="M14 8h3V4h-3a4 4 0 0 0-4 4v3H7v4h3v6h4v-6h3l1-4h-4V8.5a.5.5 0 0 1 .5-.5z" />,
+    arrow: <path d="M5 12h14M13 6l6 6-6 6" />,
+  "arrow-left": <path d="M19 12H5M11 6l-6 6 6 6" />,
+  star: <path d="m12 3 2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1L3.2 9.5l6.1-.9z" />,
+  pencil: (
+    <>
+      <path d="M4 20l1-4L16.5 4.5a2.1 2.1 0 0 1 3 3L8 19z" />
+      <path d="m14.5 6.5 3 3" />
+    </>
+  ),
+  book: (
+    <>
+      <path d="M12 6c-1.5-1.3-3.7-2-6-2H3v14h3c2.3 0 4.5.7 6 2 1.5-1.3 3.7-2 6-2h3V4h-3c-2.3 0-4.5.7-6 2z" />
+      <path d="M12 6v14" />
+    </>
+  ),
+  gift: (
+    <>
+      <rect x="3" y="8" width="18" height="4" rx="1" />
+      <path d="M5 12v8h14v-8M12 8v12" />
+      <path d="M12 8c-1-3-5-4-5-1.5C7 8 9 8 12 8zM12 8c1-3 5-4 5-1.5C17 8 15 8 12 8z" />
+    </>
+  ),
+  youtube: (
+    <>
+      <rect x="3" y="6" width="18" height="12" rx="4" />
+      <path d="m10 9.5 5 2.5-5 2.5z" />
+    </>
+  ),
 };
 
 export default function Icon({ name, size = "md", className = "", title }) {

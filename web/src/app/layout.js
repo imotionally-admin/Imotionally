@@ -1,18 +1,18 @@
-import { Nunito, Playfair_Display } from "next/font/google";
+import { DM_Sans, Playfair_Display } from "next/font/google";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import { ToastProvider } from "@/context/ToastContext";
 import "./globals.css";
 
-const playfairDisplay = Playfair_Display({
+const playfair = Playfair_Display({
   subsets: ["latin"],
   variable: "--font-playfair-display",
   display: "swap",
 });
 
-const nunito = Nunito({
+const dmSans = DM_Sans({
   subsets: ["latin"],
-  variable: "--font-nunito",
+  variable: "--font-dm-sans",
   display: "swap",
 });
 
@@ -34,22 +34,22 @@ export const metadata = {
 export const viewport = {
   width: "device-width",
   initialScale: 1,
-  themeColor: "#cdb8f0",
+  themeColor: "#f4eff5",
 };
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className={`${playfairDisplay.variable} ${nunito.variable}`}>
+    <html lang="en" className={`${playfair.variable} ${dmSans.variable}`}>
       <body>
-  <a href="#main" className="skip-link">
-    Skip to content
-  </a>
-  <ToastProvider>
-    <Header />
-    <main id="main">{children}</main>
-    <Footer />
-  </ToastProvider>
-</body>
+        <a href="#main" className="skip-link">
+          Skip to content
+        </a>
+        <ToastProvider>
+          <Header />
+          <main id="main">{children}</main>
+          <Footer />
+        </ToastProvider>
+      </body>
     </html>
   );
 }

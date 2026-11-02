@@ -1,24 +1,17 @@
 .accordion {
   display: flex;
   flex-direction: column;
-  gap: var(--space-3);
+  border-top: var(--border-width) solid var(--color-border-strong);
 }
 
 .item {
-  overflow: hidden;
-  border: var(--border-width) solid var(--color-border);
-  border-radius: var(--radius-lg);
-  background: var(--color-surface);
-  transition: border-color var(--duration-base) var(--ease-out);
-}
-
-.open {
-  border-color: var(--color-secondary-300);
+  border-bottom: var(--border-width) solid var(--color-border-strong);
 }
 
 .heading {
   font-family: var(--font-body);
-  font-size: var(--text-base);
+  font-size: var(--text-p2);
+  font-weight: var(--weight-medium);
 }
 
 .trigger {
@@ -27,15 +20,23 @@
   justify-content: space-between;
   gap: var(--space-4);
   width: 100%;
-  padding: var(--space-4) var(--space-6);
+  padding: var(--space-5) var(--space-2);
   text-align: left;
-  font-weight: var(--weight-semibold);
-  color: var(--color-heading);
-  transition: background-color var(--duration-fast) var(--ease-out);
+  font-weight: var(--weight-medium);
+  color: var(--color-p101);
+  transition: color var(--duration-fast) var(--ease-out);
 }
 
 .trigger:hover {
-  background: var(--color-surface-tint);
+  color: var(--color-p103);
+}
+
+.icon {
+  transition: transform var(--duration-base) var(--ease-out);
+}
+
+.open .icon {
+  transform: rotate(90deg);
 }
 
 .panel {
@@ -60,7 +61,6 @@
 }
 
 .answer {
-  padding: 0 var(--space-6) var(--space-5);
-  color: var(--color-text-muted);
-  font-size: var(--text-sm);
+  padding: 0 var(--space-2) var(--space-5);
+  color: var(--color-text);
 }

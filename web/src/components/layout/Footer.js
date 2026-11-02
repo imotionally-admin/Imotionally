@@ -1,26 +1,22 @@
 import Link from "next/link";
-import { cacheLife } from "next/cache";
+import Image from "next/image";
 import Icon from "@/components/ui/Icon";
-import BrandLogo from "@/components/ui/BrandLogo";
-import { FOOTER_COLUMNS, SOCIAL_LINKS, STUDIO_NAME } from "@/utils/constants";
+import NewsletterForm from "./NewsletterForm";
+import { COPYRIGHT_YEAR, FOOTER_COLUMNS, SOCIAL_LINKS, STUDIO_NAME } from "@/utils/constants";
 import styles from "./Footer.module.css";
 
-export default async function Footer() {
-  "use cache";
-  cacheLife("days");
-  const year = 2026;
-  const socials = SOCIAL_LINKS.filter((social) => social.href);
-
+export default function Footer() {
   return (
-    <footer id="footer" className={styles.footer}>
+    <footer className={styles.footer}>
       <div className={`container ${styles.grid}`}>
-        <div className={styles.brand}>
+        <div>
           <Link href="/" className={styles.logo}>
-            <BrandLogo />
+            <Image src="/logo.png" alt="Imotionally" fill sizes="10rem" />
           </Link>
-          <p className={styles.tagline}>
-            Premium personalized storybooks that make every reader the hero of their own story.
-          </p>
+          <div className={styles.subscribe}>
+            <h2 className={styles.subscribeTitle}>Subscribe to our newsletter</h2>
+            <NewsletterForm />
+          </div>
         </div>
 
         {FOOTER_COLUMNS.map((column) => (
@@ -38,44 +34,27 @@ export default async function Footer() {
           </nav>
         ))}
 
-        {socials.length > 0 && (
-          <div>
-            <h2 className={styles.columnTitle}>Follow Us</h2>
-            <ul role="list" className={styles.socials}>
-              {socials.map((social) => (
-                <li key={social.label}>
-                  <a
-                    href={social.href}
-                    className={styles.socialLink}
-                    aria-label={social.label}
-                    target={social.href.startsWith("mailto:") ? undefined : "_blank"}
-                    rel="noopener noreferrer"
-                  >
-                    <Icon name={social.icon} />
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-        )}
+        <ul role="list" className={styles.socials}>
+          {SOCIAL_LINKS.map((social) => (
+            <li key={social.label}>
+              <a
+                href={social.href}
+                className={styles.socialLink}
+                aria-label={social.label}
+                target={social.href.startsWith("http") ? "_blank" : undefined}
+                rel="noopener noreferrer"
+              >
+                <Icon name={social.icon} />
+              </a>
+            </li>
+          ))}
+        </ul>
       </div>
 
       <div className={`container ${styles.bottom}`}>
-        <p className={styles.copy}>
-          &copy; {year} {STUDIO_NAME}. All rights reserved.
+        <p>
+          &copy; {COPYRIGHT_YEAR} {STUDIO_NAME}. All rights reserved.
         </p>
-        <ul role="list" className={styles.legal}>
-          <li>
-            <Link href="/privacy-policy" className={styles.link}>
-              Privacy Policy
-            </Link>
-          </li>
-          <li>
-            <Link href="/terms" className={styles.link}>
-              Terms
-            </Link>
-          </li>
-        </ul>
       </div>
     </footer>
   );

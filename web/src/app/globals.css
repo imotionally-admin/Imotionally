@@ -1,5 +1,6 @@
 @import "../styles/tokens.css";
 @import "../styles/animations.css";
+
 *,
 *::before,
 *::after {
@@ -22,7 +23,7 @@ body {
   display: flex;
   flex-direction: column;
   font-family: var(--font-body);
-  font-size: var(--text-base);
+  font-size: var(--text-p2);
   line-height: var(--leading-normal);
   color: var(--color-text);
   background: var(--color-bg);
@@ -77,30 +78,53 @@ h2,
 h3,
 h4 {
   font-family: var(--font-heading);
-  font-weight: var(--weight-semibold);
+  font-weight: var(--weight-regular);
   line-height: var(--leading-tight);
   color: var(--color-heading);
   text-wrap: balance;
 }
 
+h1,
+h2 {
+  font-weight: var(--weight-bold);
+}
+
 h1 {
-  font-size: var(--text-4xl);
+  font-size: var(--text-h1);
 }
 
 h2 {
-  font-size: var(--text-3xl);
+  font-size: var(--text-h2);
 }
 
 h3 {
-  font-size: var(--text-2xl);
+  font-size: var(--text-h3);
 }
 
 h4 {
-  font-size: var(--text-xl);
+  font-size: var(--text-h4);
+}
+
+h1 strong,
+h2 strong,
+h3 strong,
+h4 strong {
+  font-weight: var(--weight-bold);
+}
+
+.hl {
+  padding-inline: 0.1em;
+  background: linear-gradient(transparent 62%, var(--color-s101) 62%);
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
 }
 
 p {
   text-wrap: pretty;
+}
+
+.lead {
+  font-size: var(--text-p1);
 }
 
 :focus-visible {
@@ -109,8 +133,8 @@ p {
 }
 
 ::selection {
-  background: var(--color-secondary-200);
-  color: var(--color-neutral-900);
+  background: var(--color-p105);
+  color: var(--color-p101);
 }
 
 .container {
@@ -128,12 +152,12 @@ p {
   padding-block: var(--section-space);
 }
 
-.section--tint {
-  background: var(--color-surface-alt);
+.section--white {
+  background: var(--color-white);
 }
 
-.section--soft {
-  background: var(--gradient-soft);
+.section--peach {
+  background: var(--color-s103);
 }
 
 .stack {

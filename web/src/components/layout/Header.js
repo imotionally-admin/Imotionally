@@ -15,6 +15,7 @@ export default function Header({ cartCount = 0 }) {
   const closeMenu = useCallback(() => setMenuOpen(false), []);
 
   const isActive = (href) => {
+    if (href === "/#home") return pathname === "/";
     if (href.includes("#")) return false;
     return href === "/" ? pathname === "/" : pathname.startsWith(href);
   };

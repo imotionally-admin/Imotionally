@@ -1,0 +1,60 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+  height: 100%;
+  padding: var(--space-6);
+  border: var(--border-width) solid var(--color-border);
+  border-radius: var(--radius-xl);
+  background: var(--color-surface);
+}
+
+.quote {
+  flex: 1;
+}
+
+.footer {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.reviewer {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.avatar {
+  display: grid;
+  flex: 0 0 var(--space-10);
+  place-items: center;
+  width: var(--space-10);
+  height: var(--space-10);
+  border-radius: 50%;
+  background: var(--color-s103);
+  color: var(--color-p101);
+}
+
+.name {
+  font-weight: var(--weight-bold);
+  color: var(--color-p101);
+}
+
+.stars {
+  display: inline-flex;
+  gap: var(--space-1);
+}
+
+.starOn {
+  color: var(--color-a105);
+  fill: currentColor;
+}
+
+.starOff {
+  color: var(--color-a102);
+}
+
+.source {
+  font-size: var(--text-xs);
+}

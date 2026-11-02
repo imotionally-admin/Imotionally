@@ -1,33 +1,36 @@
 import Link from "next/link";
+import Icon from "./Icon";
 import Spinner from "./Spinner";
 import styles from "./Button.module.css";
 
 export default function Button({
   children,
   variant = "primary",
-  size = "md",
   href,
   loading = false,
   fullWidth = false,
+  arrow = true,
   className = "",
   type = "button",
   disabled = false,
   ...rest
 }) {
-  const classes = [
-    styles.button,
-    styles[variant],
-    styles[size],
-    fullWidth ? styles.full : "",
-    className,
-  ]
+  const classes = [styles.button, styles[variant], fullWidth ? styles.full : "", className]
     .filter(Boolean)
     .join(" ");
+
+  const content = (
+    <>
+      {loading && <Spinner size="sm" label="" />}
+      <span>{children}</span>
+      {arrow && !loading && <Icon name="arrow" size="sm" className={styles.arrow} />}
+    </>
+  );
 
   if (href && !disabled) {
     return (
       <Link href={href} className={classes} {...rest}>
-        {children}
+        {content}
       </Link>
     );
   }
@@ -40,8 +43,7 @@ export default function Button({
       aria-busy={loading || undefined}
       {...rest}
     >
-      {loading && <Spinner size="sm" label="" />}
-      {children}
+      {content}
     </button>
   );
 }

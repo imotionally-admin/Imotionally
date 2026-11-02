@@ -2,7 +2,7 @@
   position: relative;
   overflow: hidden;
   border-radius: var(--radius-xl);
-  background: var(--color-surface-alt);
+  background: var(--color-a102);
 }
 
 .cover {
@@ -30,16 +30,16 @@
   justify-content: center;
   gap: var(--space-3);
   padding: var(--space-6);
-  border: var(--border-width-thick) dashed var(--color-primary-200);
+  border: var(--border-width-thick) dashed var(--color-p102);
   border-radius: inherit;
   background: var(--gradient-soft);
-  color: var(--color-primary-700);
+  color: var(--color-p102);
   text-align: center;
 }
 
 .label {
   font-family: var(--font-heading);
   font-size: var(--text-md);
-  color: var(--color-heading);
+  color: var(--color-p101);
   text-wrap: balance;
 }

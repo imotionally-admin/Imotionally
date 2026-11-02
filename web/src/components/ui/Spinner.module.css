@@ -4,7 +4,7 @@
   height: var(--spinner-size);
   border: var(--border-width-thick) solid var(--color-primary-200);
   border-top-color: var(--color-secondary-500);
-  border-radius: var(--radius-pill);
+  border-radius: 50%;
   animation: spin calc(var(--duration-slow) * 2) linear infinite;
 }
 

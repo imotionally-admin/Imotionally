@@ -1,22 +1,25 @@
 import Link from "next/link";
 import BookCard from "@/components/books/BookCard";
-import Button from "@/components/ui/Button";
+import Icon from "@/components/ui/Icon";
 import SectionHeader from "@/components/ui/SectionHeader";
 import styles from "./FeaturedBooks.module.css";
 
 export default function FeaturedBooks({ books }) {
   return (
-    <section className="section" aria-labelledby="collection-title">
+    <section id="books" className="section" aria-labelledby="stories-title">
       <div className="container">
         <SectionHeader
-          id="collection-title"
+          id="stories-title"
           align="split"
-          className={styles.sectionHeader}
-          title="Our Personalized Collection"
-          subtitle="Stories tailored to different age groups and meaningful life moments."
+          title={
+            <>
+              <strong className="hl">Stories</strong> to explore
+            </>
+          }
         >
           <Link href="/books" className={styles.viewAll}>
             View all books
+            <Icon name="arrow" size="sm" className={styles.arrow} />
           </Link>
         </SectionHeader>
 
@@ -27,12 +30,6 @@ export default function FeaturedBooks({ books }) {
             </li>
           ))}
         </ul>
-
-        <div className={styles.more}>
-          <Button href="/books" variant="outline">
-            Browse All Stories
-          </Button>
-        </div>
       </div>
     </section>
   );

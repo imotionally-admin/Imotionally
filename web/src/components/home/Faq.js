@@ -6,9 +6,9 @@ export default function Faq() {
   return (
     <section className="section" aria-labelledby="faq-title">
       <div className="container container--narrow">
-        <SectionHeader id="faq-title" title="Frequently Asked Questions" />
+        <SectionHeader id="faq-title" title={<strong className="hl">FAQ&apos;s</strong>} />
         <div className="reveal">
-          <Accordion items={FAQS} defaultOpenId="printing" />
+          <Accordion items={FAQS} defaultOpenId={FAQS[0].id} />
         </div>
       </div>
     </section>

@@ -54,7 +54,7 @@
   place-items: center;
   width: var(--space-10);
   height: var(--space-10);
-  border-radius: var(--radius-pill);
+  border-radius: 50%;
   color: var(--color-text);
 }
 

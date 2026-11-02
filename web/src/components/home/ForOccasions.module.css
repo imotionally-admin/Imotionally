@@ -1,0 +1,29 @@
+.frame {
+  position: relative;
+  aspect-ratio: 1;
+  overflow: hidden;
+  border-radius: var(--radius-xl);
+}
+
+.image {
+  object-fit: cover;
+  transition: transform var(--duration-slow) var(--ease-out);
+}
+
+.frame:hover .image {
+  transform: scale(1.04);
+}
+
+.label {
+  position: absolute;
+  bottom: var(--space-4);
+  left: 50%;
+  padding: var(--space-1) var(--space-4);
+  border-radius: 999rem;
+  background: var(--color-white);
+  box-shadow: var(--shadow-sm);
+  font-size: var(--text-p3);
+  font-weight: var(--weight-medium);
+  color: var(--color-p101);
+  transform: translateX(-50%);
+}

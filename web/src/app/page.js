@@ -1,30 +1,35 @@
 import Hero from "@/components/home/Hero";
 import FeaturedBooks from "@/components/home/FeaturedBooks";
-import HowItWorks from "@/components/home/HowItWorks";
-import WhyChoose from "@/components/home/WhyChoose";
-import Testimonials from "@/components/home/Testimonials";
+import WhatMakesSpecial from "@/components/home/WhatMakesSpecial";
+import WhoFor from "@/components/home/WhoFor";
+import Showcase from "@/components/home/Showcase";
+import ForOccasions from "@/components/home/ForOccasions";
+import Steps from "@/components/home/Steps";
+import Reviews from "@/components/home/Reviews";
+import StoryCta from "@/components/home/StoryCta";
 import Faq from "@/components/home/Faq";
-import Newsletter from "@/components/home/Newsletter";
 import { getFeaturedBooks } from "@/lib/data/books";
 
 export const metadata = {
-  title: "Imotionally",
+  title: "Personalized Storybooks for Every Age",
   alternates: { canonical: "/" },
 };
 
-
 export default async function Home() {
-  const books = await getFeaturedBooks(3);
+  const featured = await getFeaturedBooks(4);
 
   return (
     <>
       <Hero />
-      <FeaturedBooks books={books} />
-      <HowItWorks />
-      <WhyChoose />
-      <Testimonials />
+      <FeaturedBooks books={featured} />
+      <WhatMakesSpecial />
+      <WhoFor />
+      <Showcase />
+      <ForOccasions />
+      <Steps />
+      <Reviews />
+      <StoryCta />
       <Faq />
-      <Newsletter />
     </>
   );
 }

@@ -1,19 +1,17 @@
 .hero {
   position: relative;
-  display: grid;
-  align-items: center;
   overflow: hidden;
-  min-height: calc(100vh - var(--header-height));
-  min-height: calc(100svh - var(--header-height));
-  padding-block: var(--section-space);
-  background: var(--color-neutral-0);
+  padding-top: 0;
+  padding-bottom: clamp(var(--space-5), 1.5vw + var(--space-2), var(--space-8));
 }
 
 .inner {
-  position: relative;
   display: grid;
   align-items: center;
-  gap: var(--space-12);
+  width: 100%;
+  min-height: 32rem;
+  border-block: var(--border-width) solid var(--color-border-strong);
+  background: var(--color-surface);
 }
 
 .content {
@@ -21,6 +19,8 @@
   flex-direction: column;
   align-items: flex-start;
   gap: var(--space-6);
+  width: 100%;
+  padding: clamp(var(--space-5), 3vw, var(--space-10)) var(--container-pad);
 }
 
 .content > * {
@@ -39,18 +39,24 @@
   animation-delay: calc(var(--duration-fast) * 3);
 }
 
-.badge {
-  padding: var(--space-2) var(--space-4);
+.tag {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-1) var(--space-4);
+  border-radius: var(--radius-button);
+  background: var(--color-s103);
+  font-size: var(--text-p3);
+  font-weight: var(--weight-medium);
+  color: var(--color-p101);
 }
 
 .title {
-  max-width: 18ch;
+  max-width: 19ch;
 }
 
 .lead {
   max-width: var(--measure);
-  font-size: var(--text-lg);
-  color: var(--color-text-muted);
 }
 
 .actions {
@@ -59,21 +65,43 @@
   gap: var(--space-3);
 }
 
-.art {
+.mediaWrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 13rem;
+  padding: var(--space-5);
+  border-top: var(--border-width) solid var(--color-border-strong);
+  background: var(--color-s103);
+}
+
+.image {
   display: block;
   width: 100%;
-  max-width: 75rem;
+  max-height: 20rem;
   height: auto;
-  justify-self: center;
 }
 
 @media (min-width: 56em) {
   .inner {
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
+    grid-template-columns: 60fr 40fr;
+    min-height: 34rem;
   }
 
-  .art {
-    width: 110%;
-    justify-self: end;
+  .content {
+    padding-left: max(
+      var(--container-pad),
+      calc((100vw - var(--container-max)) / 2 + var(--container-pad))
+    );
+    padding-right: clamp(var(--space-5), 3vw, var(--space-10));
+  }
+
+  .mediaWrap {
+    height: 100%;
+    min-height: 18rem;
+    padding: var(--space-6);
+    border-top: 0;
+    border-left: var(--border-width) solid var(--color-border-strong);
   }
 }
