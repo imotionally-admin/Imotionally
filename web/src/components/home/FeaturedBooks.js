@@ -6,7 +6,11 @@ import styles from "./FeaturedBooks.module.css";
 
 export default function FeaturedBooks({ books }) {
   return (
-    <section id="books" className="section" aria-labelledby="stories-title">
+    <section
+      id="books"
+      className={`section ${styles.section}`}
+      aria-labelledby="stories-title"
+    >
       <div className="container">
         <SectionHeader
           id="stories-title"

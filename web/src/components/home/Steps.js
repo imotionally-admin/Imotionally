@@ -4,7 +4,11 @@ import styles from "./Steps.module.css";
 
 export default function Steps() {
   return (
-    <section id="how-it-works" className="section" aria-labelledby="steps-title">
+    <section
+      id="how-it-works"
+      className={`section ${styles.section}`}
+      aria-labelledby="steps-title"
+    >
       <div className="container">
         <SectionHeader
           id="steps-title"

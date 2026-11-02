@@ -2,7 +2,7 @@
   position: relative;
   overflow: hidden;
   padding-top: 0;
-  padding-bottom: clamp(var(--space-5), 1.5vw + var(--space-2), var(--space-8));
+  padding-bottom: clamp(var(--space-3), 1vw + var(--space-1), var(--space-5));
 }
 
 .inner {
@@ -79,14 +79,14 @@
 .image {
   display: block;
   width: 100%;
-  max-height: 20rem;
+  max-width: 100%;
   height: auto;
 }
 
 @media (min-width: 56em) {
   .inner {
-    grid-template-columns: 60fr 40fr;
-    min-height: 34rem;
+    grid-template-columns: 55fr 45fr;
+    min-height: 32rem;
   }
 
   .content {
@@ -100,7 +100,11 @@
   .mediaWrap {
     height: 100%;
     min-height: 18rem;
-    padding: var(--space-6);
+    padding: 0;
+    padding-right: max(
+      var(--container-pad),
+      calc((100vw - var(--container-max)) / 2 + var(--container-pad))
+    );
     border-top: 0;
     border-left: var(--border-width) solid var(--color-border-strong);
   }
