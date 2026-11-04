@@ -32,11 +32,12 @@
 }
 
 .icon {
+  transform: rotate(-90deg);
   transition: transform var(--duration-base) var(--ease-out);
 }
 
 .open .icon {
-  transform: rotate(90deg);
+  transform: rotate(0deg);
 }
 
 .panel {

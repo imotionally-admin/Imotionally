@@ -27,7 +27,7 @@ export default function Accordion({ items, defaultOpenId = null }) {
                 onClick={() => setOpenId(isOpen ? null : item.id)}
               >
                 <span>{item.question}</span>
-                <Icon name="arrow" size="sm" className={styles.icon} />
+                <Icon name="chevron" size="sm" className={styles.icon} />
               </button>
             </h3>
             <div id={panelId} role="region" aria-labelledby={buttonId} className={styles.panel}>
