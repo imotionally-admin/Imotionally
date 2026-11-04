@@ -9,7 +9,7 @@ export default function WhatMakesSpecial() {
       <div className="container">
         <SectionHeader
           id="special-title"
-          align="split"
+          align="center"
           title={
             <>
               What makes <strong className="hl">it special</strong>?
@@ -22,13 +22,13 @@ export default function WhatMakesSpecial() {
           {FEATURES.map((feature) => (
             <li key={feature.title} className="reveal">
               <article className={styles.card}>
-                <span className={styles.icon} aria-hidden="true">
-                  <Icon name={feature.icon} size="lg" />
-                </span>
-                <div className={styles.content}>
+                <div className={styles.heading}>
+                  <span className={styles.icon} aria-hidden="true">
+                    <Icon name={feature.icon} size="lg" />
+                  </span>
                   <h3 className={styles.title}>{feature.title}</h3>
-                  <p className={styles.text}>{feature.text}</p>
                 </div>
+                <p className={styles.text}>{feature.text}</p>
               </article>
             </li>
           ))}

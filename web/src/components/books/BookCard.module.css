@@ -9,7 +9,7 @@
 }
 
 .cover {
-  border-radius: 0;
+  border-radius: var(--radius-xl);
   background: var(--color-s103);
 }
 
@@ -18,17 +18,17 @@
   flex: 1;
   flex-direction: column;
   gap: var(--space-3);
-  padding-top: var(--space-3);
+  padding-top: var(--space-4);
 }
 
 .title {
   font-family: var(--font-body);
-  font-size: var(--text-h4);
+  font-size: var(--text-lg);
   font-weight: var(--weight-semibold);
 }
 
 .titleLink {
-  color: inherit;
+  color: var(--color-heading);
   text-decoration: none;
 }
 
@@ -49,12 +49,13 @@
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-  gap: var(--space-3);
+  gap: var(--space-2);
   margin-top: auto;
-  padding-top: var(--space-3);
+  padding-top: var(--space-2);
 }
 
 .price {
+  font-size: var(--text-p3);
   font-weight: var(--weight-bold);
   color: var(--color-p101);
 }
@@ -63,4 +64,10 @@
   font-size: var(--text-p3);
   font-weight: var(--weight-regular);
   color: var(--color-text);
+}
+
+.button {
+  min-height: 2rem;
+  padding: var(--space-1) var(--space-3);
+  font-size: var(--text-p3);
 }

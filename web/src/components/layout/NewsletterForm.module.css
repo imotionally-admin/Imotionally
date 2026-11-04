@@ -16,7 +16,7 @@
   min-height: var(--button-height);
   padding: var(--space-2) var(--space-5);
   border: var(--border-width) solid transparent;
-  border-radius: 0;
+  border-radius: var(--radius-md);
   background: var(--color-a101);
   color: var(--color-p101);
 }

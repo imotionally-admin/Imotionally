@@ -1,8 +1,15 @@
 .frame {
   position: relative;
+  display: block;
   aspect-ratio: 1;
   overflow: hidden;
   border-radius: var(--radius-xl);
+  color: inherit;
+}
+
+.frame:focus-visible {
+  outline: var(--focus-ring-width) solid var(--color-focus);
+  outline-offset: var(--focus-ring-offset);
 }
 
 .image {
@@ -26,4 +33,13 @@
   font-weight: var(--weight-medium);
   color: var(--color-p101);
   transform: translateX(-50%);
+  transition:
+    color var(--duration-base) var(--ease-out),
+    background-color var(--duration-base) var(--ease-out);
+}
+
+.frame:hover .label,
+.frame:focus-visible .label {
+  background: var(--color-p103);
+  color: var(--color-white);
 }

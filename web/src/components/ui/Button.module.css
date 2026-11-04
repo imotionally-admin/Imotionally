@@ -32,37 +32,22 @@
   width: 100%;
 }
 
-.primary {
+.primary,
+.secondary,
+.ghost {
   background: var(--color-p101);
   color: var(--color-p105);
 }
 
-.primary:hover:not(:disabled) {
-  background: var(--color-p103);
-  color: var(--color-p105);
-  box-shadow: var(--shadow-md);
-}
-
-.secondary {
+.primary:hover:not(:disabled),
+.secondary:hover:not(:disabled),
+.ghost:hover:not(:disabled),
+.primary:focus-visible:not(:disabled),
+.secondary:focus-visible:not(:disabled),
+.ghost:focus-visible:not(:disabled) {
   background: var(--color-p105);
   color: var(--color-p101);
-}
-
-.secondary:hover:not(:disabled) {
-  background: color-mix(in srgb, var(--color-p105) 80%, var(--color-p104));
-  color: var(--color-p101);
   box-shadow: var(--shadow-md);
-}
-
-.ghost {
-  background: transparent;
-  border-color: var(--color-p101);
-  color: var(--color-p101);
-}
-
-.ghost:hover:not(:disabled) {
-  background: var(--color-p101);
-  color: var(--color-p105);
 }
 
 .button:disabled {

@@ -31,7 +31,9 @@ export default function BookCard({ book }) {
           <p className={styles.price}>
             <span className={styles.from}>From</span> {formatPrice(book.priceFrom)}
           </p>
-          <Button href={href}>Personalize</Button>
+          <Button href={href} className={styles.button}>
+            Personalize
+          </Button>
         </div>
       </div>
     </article>

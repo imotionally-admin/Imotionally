@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import Carousel from "@/components/ui/Carousel";
 import { OCCASIONS } from "@/lib/content/home";
 import styles from "./ForOccasions.module.css";
@@ -19,7 +20,7 @@ export default function ForOccasions() {
         >
           {OCCASIONS.map((occasion) => (
             <li key={occasion.label}>
-              <div className={styles.frame}>
+              <Link href="/books" className={styles.frame}>
                 <Image
                   src={occasion.image}
                   alt=""
@@ -28,7 +29,7 @@ export default function ForOccasions() {
                   className={styles.image}
                 />
                 <span className={styles.label}>{occasion.label}</span>
-              </div>
+              </Link>
             </li>
           ))}
         </Carousel>

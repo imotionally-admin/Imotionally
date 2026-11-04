@@ -1,6 +1,5 @@
 .hero {
   position: relative;
-  overflow: hidden;
   padding-top: 0;
   padding-bottom: clamp(var(--space-3), 1vw + var(--space-1), var(--space-5));
 }
@@ -8,9 +7,15 @@
 .inner {
   display: grid;
   align-items: center;
-  width: 100%;
+  width: min(
+    calc(100% - var(--container-pad) - var(--container-pad)),
+    var(--container-max)
+  );
+  margin-inline: auto;
   min-height: 32rem;
-  border-block: var(--border-width) solid var(--color-border-strong);
+  overflow: hidden;
+  border: var(--border-width) solid var(--color-border-strong);
+  border-radius: var(--radius-xl);
   background: var(--color-surface);
 }
 
@@ -20,7 +25,7 @@
   align-items: flex-start;
   gap: var(--space-6);
   width: 100%;
-  padding: clamp(var(--space-5), 3vw, var(--space-10)) var(--container-pad);
+  padding: clamp(var(--space-6), 4vw, var(--space-12));
 }
 
 .content > * {
@@ -71,9 +76,8 @@
   justify-content: center;
   width: 100%;
   min-height: 13rem;
-  padding: var(--space-5);
-  border-top: var(--border-width) solid var(--color-border-strong);
-  background: var(--color-s103);
+  padding: clamp(var(--space-6), 4vw, var(--space-12));
+  background: var(--color-surface);
 }
 
 .image {
@@ -90,22 +94,12 @@
   }
 
   .content {
-    padding-left: max(
-      var(--container-pad),
-      calc((100vw - var(--container-max)) / 2 + var(--container-pad))
-    );
-    padding-right: clamp(var(--space-5), 3vw, var(--space-10));
+    padding-inline: clamp(var(--space-6), 4vw, var(--space-12));
   }
 
   .mediaWrap {
     height: 100%;
     min-height: 18rem;
-    padding: 0;
-    padding-right: max(
-      var(--container-pad),
-      calc((100vw - var(--container-max)) / 2 + var(--container-pad))
-    );
-    border-top: 0;
-    border-left: var(--border-width) solid var(--color-border-strong);
+    padding: clamp(var(--space-6), 4vw, var(--space-12));
   }
 }

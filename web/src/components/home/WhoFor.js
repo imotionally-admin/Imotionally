@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import Carousel from "@/components/ui/Carousel";
 import { AUDIENCES } from "@/lib/content/home";
 import styles from "./WhoFor.module.css";
@@ -19,7 +20,7 @@ export default function WhoFor() {
         >
           {AUDIENCES.map((audience) => (
             <li key={audience.label}>
-              <div className={styles.frame}>
+              <Link href="/books" className={styles.frame}>
                 <Image
                   src={audience.image}
                   alt=""
@@ -28,7 +29,7 @@ export default function WhoFor() {
                   className={styles.image}
                 />
                 <span className={styles.label}>{audience.label}</span>
-              </div>
+              </Link>
             </li>
           ))}
         </Carousel>
