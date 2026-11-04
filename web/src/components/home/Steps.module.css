@@ -1,7 +1,3 @@
-.section {
-  padding-block: var(--space-8);
-}
-
 .band {
   padding-block: var(--space-20);
   background: var(--color-s103);

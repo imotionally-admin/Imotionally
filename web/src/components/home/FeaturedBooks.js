@@ -15,9 +15,11 @@ export default function FeaturedBooks({ books }) {
         <SectionHeader
           id="stories-title"
           align="split"
+          className={styles.mobileHeader}
           title={
             <>
-              <strong className="hl">Stories</strong> to explore
+              <strong className="hl">Stories</strong>
+              <br className={styles.mobileBreak} /> to explore
             </>
           }
         >

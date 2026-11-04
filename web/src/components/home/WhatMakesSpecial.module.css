@@ -33,8 +33,6 @@
   place-items: center;
   width: var(--space-12);
   height: var(--space-12);
-  border-radius: 50%;
-  background: color-mix(in srgb, var(--color-white) 55%, transparent);
 }
 
 .title {

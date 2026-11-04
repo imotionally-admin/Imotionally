@@ -16,7 +16,7 @@ export default function ForOccasions() {
             </>
           }
           label="Browse occasions"
-          align="center"
+          align="left"
         >
           {OCCASIONS.map((occasion) => (
             <li key={occasion.label}>

@@ -8,10 +8,7 @@ export default function Hero() {
     <section id="home" className={styles.hero} aria-labelledby="hero-title">
       <div className={styles.inner}>
         <div className={styles.content}>
-          <p className={styles.tag}>
-            <Icon name="heart" size="sm" />
-            Personalized stories &amp; gifts for every age
-          </p>
+          
           <h1 id="hero-title" className={styles.title}>
             Give someone a story where they are the hero
           </h1>

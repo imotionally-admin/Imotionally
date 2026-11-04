@@ -1,8 +1,3 @@
-.section.section {
-  padding-top: var(--space-10);
-  padding-bottom: var(--space-12);
-}
-
 .grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -14,6 +9,16 @@
   .grid {
     grid-template-columns: repeat(4, minmax(0, 1fr));
   }
+}
+
+.mobileHeader {
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.mobileBreak {
+  display: inline;
 }
 
 .viewAll {
@@ -35,4 +40,15 @@
 
 .viewAll:hover .arrow {
   transform: translateX(var(--space-1));
+}
+
+@media (min-width: 40em) {
+  .mobileHeader {
+    flex-direction: row;
+    align-items: flex-end;
+  }
+
+  .mobileBreak {
+    display: none;
+  }
 }

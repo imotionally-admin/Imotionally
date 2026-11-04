@@ -27,6 +27,10 @@
   transition: color var(--duration-fast) var(--ease-out);
 }
 
+.open .trigger {
+  font-weight: var(--weight-bold);
+}
+
 .trigger:hover {
   color: var(--color-p103);
 }

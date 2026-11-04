@@ -11,7 +11,7 @@ export default function Showcase() {
       </div>
       <div className={styles.panel}>
         <div className={styles.content}>
-          <h2 id="showcase-title">A Book that no one in the world has</h2>
+          <h1 id="showcase-title">A Book that no one in the world has</h1>
           <p className="lead">
             Because it has their name on the cover and your words inside, it&apos;s truly one of a kind.
           </p>

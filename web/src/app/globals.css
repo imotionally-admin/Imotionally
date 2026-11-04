@@ -149,8 +149,7 @@ p {
 }
 
 .section {
-  padding-top: var(--space-12);
-  padding-bottom: var(--section-space);
+  padding-block: var(--section-space);
 }
 
 .section--white {

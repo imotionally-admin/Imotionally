@@ -16,7 +16,7 @@ export default function WhoFor() {
             </>
           }
           label="Who is it for"
-          align="center"
+          align="left"
         >
           {AUDIENCES.map((audience) => (
             <li key={audience.label}>

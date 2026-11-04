@@ -7,7 +7,7 @@
   flex-direction: column;
   align-items: center;
   gap: var(--space-6);
-  padding: var(--space-16) var(--space-6);
+  padding: calc(var(--space-16) * 1.5) var(--space-6);
   border-radius: var(--radius-xl);
   background: var(--color-p105);
   text-align: center;
@@ -15,4 +15,5 @@
 
 .title {
   max-width: 24ch;
+  font-size: var(--text-h1);
 }

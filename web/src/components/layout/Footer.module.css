@@ -53,7 +53,10 @@
 }
 
 .subscribeTitle {
-  font-size: var(--text-h4);
+  font-family: var(--font-body);
+  font-size: var(--text-p2);
+  font-weight: var(--weight-medium);
+  line-height: 1.5;
   color: var(--color-white);
 }
 
@@ -122,10 +125,11 @@
 
 @media (min-width: 56em) {
   .grid {
-    grid-template-columns: 1.6fr 1fr 1fr auto;
+    grid-template-columns: minmax(0, 24rem) max-content max-content auto;
   }
 
   .socials {
     flex-direction: column;
+    justify-self: end;
   }
 }

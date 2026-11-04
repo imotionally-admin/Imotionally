@@ -12,21 +12,21 @@ export const NAV_LINKS = [
 
 export const FOOTER_COLUMNS = [
   {
-    title: "Explore",
-    links: [
-      { label: "Books", href: "/books" },
-      { label: "How It Works", href: "/#how-it-works" },
-      { label: "About", href: "/about" },
-      { label: "Contact", href: "/contact" },
-    ],
-  },
-  {
     title: "Support",
     links: [
       { label: "FAQ", href: "/faq" },
       { label: "Shipping & Returns", href: "/shipping-returns" },
       { label: "Privacy Policy", href: "/privacy-policy" },
       { label: "Terms", href: "/terms" },
+    ],
+  },
+  {
+    title: "Explore",
+    links: [
+      { label: "Books", href: "/books" },
+      { label: "How It Works", href: "/#how-it-works" },
+      { label: "About", href: "/about" },
+      { label: "Contact", href: "/contact" },
     ],
   },
 ];
