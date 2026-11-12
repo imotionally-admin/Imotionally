@@ -20,7 +20,10 @@ export default function ForOccasions() {
         >
           {OCCASIONS.map((occasion) => (
             <li key={occasion.label}>
-              <Link href="/books" className={styles.frame}>
+              <Link
+                href={`/books?occasion=${encodeURIComponent(occasion.label)}`}
+                className={styles.frame}
+              >
                 <Image
                   src={occasion.image}
                   alt=""

@@ -1,13 +1,25 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import { useSearchParams } from "next/navigation";
 import BookCard from "@/components/books/BookCard";
+import { AUDIENCES, OCCASIONS } from "@/lib/content/home";
 import styles from "./BooksCatalog.module.css";
 
 const INITIAL_VISIBLE_BOOKS = 9;
 const FILTER_GROUPS = [
-  { key: "recipient", label: "By Recipient", field: "ageGroup" },
-  { key: "occasion", label: "By Occasion", field: "occasion" },
+  {
+    key: "recipient",
+    label: "By Recipient",
+    field: "recipients",
+    values: AUDIENCES.map(({ label }) => label),
+  },
+  {
+    key: "occasion",
+    label: "By Occasion",
+    field: "occasions",
+    values: OCCASIONS.map(({ label }) => label),
+  },
   { key: "vibe", label: "By Vibe", field: "theme" },
 ];
 
@@ -18,7 +30,26 @@ const EMPTY_FILTERS = {
 };
 
 export default function BooksCatalog({ books }) {
-  const [filters, setFilters] = useState(EMPTY_FILTERS);
+  const searchParams = useSearchParams();
+  const selectedRecipient = searchParams.get("recipient");
+  const selectedOccasion = searchParams.get("occasion");
+
+  return (
+    <BooksCatalogContent
+      key={`${selectedRecipient ?? ""}:${selectedOccasion ?? ""}`}
+      books={books}
+      selectedRecipient={selectedRecipient}
+      selectedOccasion={selectedOccasion}
+    />
+  );
+}
+
+function BooksCatalogContent({ books, selectedRecipient, selectedOccasion }) {
+  const [filters, setFilters] = useState(() => ({
+    ...EMPTY_FILTERS,
+    recipient: FILTER_GROUPS[0].values.includes(selectedRecipient) ? [selectedRecipient] : [],
+    occasion: FILTER_GROUPS[1].values.includes(selectedOccasion) ? [selectedOccasion] : [],
+  }));
   const [sortBy, setSortBy] = useState("featured");
   const [visibleCount, setVisibleCount] = useState(INITIAL_VISIBLE_BOOKS);
 
@@ -26,9 +57,11 @@ export default function BooksCatalog({ books }) {
     () =>
       FILTER_GROUPS.map((group) => ({
         ...group,
-        values: [...new Set(books.map((book) => book[group.field]).filter(Boolean))].sort(
-          (first, second) => first.localeCompare(second),
-        ),
+        values:
+          group.values ??
+          [...new Set(books.map((book) => book[group.field]).filter(Boolean))].sort((first, second) =>
+            first.localeCompare(second),
+          ),
       })),
     [books],
   );
@@ -37,7 +70,11 @@ export default function BooksCatalog({ books }) {
     const matchesFilters = books.filter((book) =>
       filterGroups.every((group) => {
         const selected = filters[group.key];
-        return selected.length === 0 || selected.includes(book[group.field]);
+        const value = book[group.field];
+        return (
+          selected.length === 0 ||
+          (Array.isArray(value) ? selected.some((filter) => value.includes(filter)) : selected.includes(value))
+        );
       }),
     );
 
@@ -64,10 +101,16 @@ export default function BooksCatalog({ books }) {
 
       return { ...current, [group]: [...selected] };
     });
+    setVisibleCount(INITIAL_VISIBLE_BOOKS);
   }
 
   function clearFilters() {
     setFilters(EMPTY_FILTERS);
+    setVisibleCount(INITIAL_VISIBLE_BOOKS);
+  }
+
+  function loadMoreBooks() {
+    setVisibleCount((count) => Math.min(count + INITIAL_VISIBLE_BOOKS, filteredBooks.length));
   }
 
   const visibleBooks = filteredBooks.slice(0, visibleCount);
@@ -76,7 +119,7 @@ export default function BooksCatalog({ books }) {
     <section className={`section ${styles.section}`} aria-labelledby="books-title">
       <div className="container">
         <h1 id="books-title" className={styles.title}>
-          Books
+          <strong className="hl">Books</strong>
         </h1>
 
         <div className={styles.catalog}>
@@ -136,13 +179,13 @@ export default function BooksCatalog({ books }) {
               </p>
             )}
 
-            {visibleCount < filteredBooks.length && (
+            {visibleBooks.length === INITIAL_VISIBLE_BOOKS && visibleBooks.length < filteredBooks.length && (
               <button
                 type="button"
                 className={styles.viewMore}
-                onClick={() => setVisibleCount((count) => count + INITIAL_VISIBLE_BOOKS)}
+                onClick={loadMoreBooks}
               >
-                View more
+                Load more
               </button>
             )}
           </div>

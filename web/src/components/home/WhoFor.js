@@ -17,7 +17,10 @@ export default function WhoFor({ title, subtitle }) {
         >
           {AUDIENCES.map((audience) => (
             <li key={audience.label}>
-              <Link href="/books" className={styles.frame}>
+              <Link
+                href={`/books?recipient=${encodeURIComponent(audience.label)}`}
+                className={styles.frame}
+              >
                 <Image
                   src={audience.image}
                   alt=""

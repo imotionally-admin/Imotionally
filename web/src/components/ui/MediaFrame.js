@@ -14,7 +14,14 @@ export default function MediaFrame({
   return (
     <div className={`${styles.frame} ${styles[ratio]} ${className}`}>
       {src ? (
-        <Image src={src} alt={alt} fill sizes={sizes} priority={priority} className={styles.image} />
+        <Image
+          src={src}
+          alt={alt}
+          fill
+          sizes={sizes}
+          priority={priority}
+          className={styles.image}
+        />
       ) : (
         <div className={styles.placeholder}>
           <Icon name="heart" size="lg" />
