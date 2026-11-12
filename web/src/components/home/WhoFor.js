@@ -4,17 +4,14 @@ import Carousel from "@/components/ui/Carousel";
 import { AUDIENCES } from "@/lib/content/home";
 import styles from "./WhoFor.module.css";
 
-export default function WhoFor() {
+export default function WhoFor({ title, subtitle }) {
   return (
     <section className="section" aria-labelledby="who-title">
       <div className="container">
         <Carousel
           id="who-title"
-          title={
-            <>
-              Who&apos;s <strong className="hl">it for?</strong>
-            </>
-          }
+          title={title ?? <>Who&apos;s <strong className="hl">it for?</strong></>}
+          subtitle={subtitle}
           label="Who is it for"
           align="left"
         >

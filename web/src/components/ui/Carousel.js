@@ -4,7 +4,15 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import Icon from "./Icon";
 import styles from "./Carousel.module.css";
 
-export default function Carousel({ id, title, label, align = "left", size = "md", children }) {
+export default function Carousel({
+  id,
+  title,
+  subtitle,
+  label,
+  align = "left",
+  size = "md",
+  children,
+}) {
   const trackRef = useRef(null);
   const [edges, setEdges] = useState({ start: true, end: false });
 
@@ -41,9 +49,12 @@ export default function Carousel({ id, title, label, align = "left", size = "md"
     >
       <div className={`${styles.header} ${align === "center" ? styles.center : ""}`}>
         {align === "center" && <span aria-hidden="true" />}
-        <h2 id={id} className={styles.title}>
-          {title}
-        </h2>
+        <div className={styles.text}>
+          <h2 id={id} className={styles.title}>
+            {title}
+          </h2>
+          {subtitle && <p className={styles.subtitle}>{subtitle}</p>}
+        </div>
         <div className={styles.controls}>
           <button
             type="button"

@@ -4,7 +4,7 @@ export const COPYRIGHT_YEAR = 2026;
 
 export const NAV_LINKS = [
   { label: "Home", href: "/#home" },
-  { label: "Books", href: "/#books" },
+  { label: "Books", href: "/books" },
   { label: "How It Works", href: "/#how-it-works" },
   { label: "About", href: "/#about" },
   { label: "Contact", href: "/#story-cta" },
