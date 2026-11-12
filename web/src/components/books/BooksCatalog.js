@@ -121,6 +121,7 @@ function BooksCatalogContent({ books, selectedRecipient, selectedOccasion }) {
         <h1 id="books-title" className={styles.title}>
           <strong className="hl">Books</strong>
         </h1>
+        <p className={styles.p}>Books for all ages and every occasion</p>
 
         <div className={styles.catalog}>
           <aside className={styles.filters} aria-label="Filter books">

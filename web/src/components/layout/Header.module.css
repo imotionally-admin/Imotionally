@@ -7,6 +7,17 @@
   backdrop-filter: blur(var(--space-3));
 }
 
+.offerBar {
+  display: grid;
+  min-height: 2rem;
+  place-items: center;
+  padding-inline: var(--space-4);
+  background: #000;
+  color: #fff;
+  font-size: var(--text-xs);
+  text-align: center;
+}
+
 .inner {
   display: flex;
   align-items: center;

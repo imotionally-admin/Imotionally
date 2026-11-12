@@ -23,6 +23,9 @@ export default function Header({ cartCount = 0 }) {
   return (
     <>
       <header className={styles.header}>
+        <div className={styles.offerBar}>
+          <p>Offers and promotions</p>
+        </div>
         <div className={`container ${styles.inner}`}>
           <Link href="/" className={styles.logo}>
             <BrandLogo priority />

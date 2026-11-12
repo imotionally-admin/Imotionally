@@ -1,7 +1,6 @@
 .title {
   width: fit-content;
   margin: 0 auto var(--space-10);
-  padding-bottom: var(--space-2);
   border-bottom: var(--border-width-thick) solid var(--color-s104);
   text-align: center;
   text-transform: uppercase;
@@ -11,6 +10,14 @@
   display: grid;
   grid-template-columns: minmax(0, 1fr);
   gap: var(--space-8);
+}
+
+.p {
+  text-align: center;
+  color: var(--color-text-muted);
+  font-size: var(--text-p3);
+  padding-bottom: var(--space-2);
+
 }
 
 .filters {
