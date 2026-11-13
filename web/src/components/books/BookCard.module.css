@@ -99,3 +99,10 @@
   color: var(--color-p101);
   box-shadow: var(--shadow-md);
 }
+
+@media (max-width: 39.999em) {
+  .footer {
+    margin-top: 0;
+    padding-top: 0;
+  }
+}

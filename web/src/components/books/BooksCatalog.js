@@ -7,6 +7,12 @@ import { AUDIENCES, OCCASIONS } from "@/lib/content/home";
 import styles from "./BooksCatalog.module.css";
 
 const INITIAL_VISIBLE_BOOKS = 9;
+const SORT_OPTIONS = [
+  { value: "featured", label: "Featured" },
+  { value: "price-ascending", label: "Price: low to high" },
+  { value: "price-descending", label: "Price: high to low" },
+  { value: "title", label: "Name" },
+];
 const FILTER_GROUPS = [
   {
     key: "recipient",
@@ -45,6 +51,9 @@ export default function BooksCatalog({ books }) {
 }
 
 function BooksCatalogContent({ books, selectedRecipient, selectedOccasion }) {
+  const [filtersOpen, setFiltersOpen] = useState(false);
+  const [sortMenuOpen, setSortMenuOpen] = useState(false);
+  const [activeFilterTab, setActiveFilterTab] = useState("recipient");
   const [filters, setFilters] = useState(() => ({
     ...EMPTY_FILTERS,
     recipient: FILTER_GROUPS[0].values.includes(selectedRecipient) ? [selectedRecipient] : [],
@@ -65,6 +74,8 @@ function BooksCatalogContent({ books, selectedRecipient, selectedOccasion }) {
       })),
     [books],
   );
+
+  const activeFilterGroup = filterGroups.find((group) => group.key === activeFilterTab) ?? filterGroups[0];
 
   const filteredBooks = useMemo(() => {
     const matchesFilters = books.filter((book) =>
@@ -113,59 +124,162 @@ function BooksCatalogContent({ books, selectedRecipient, selectedOccasion }) {
     setVisibleCount((count) => Math.min(count + INITIAL_VISIBLE_BOOKS, filteredBooks.length));
   }
 
+  function renderFilterGroup(group) {
+    return (
+      <fieldset key={group.key} className={styles.filterGroup}>
+        <legend className={styles.filterTitle}>{group.label}</legend>
+        <ul role="list" className={styles.filterOptions}>
+          {group.values.map((value) => (
+            <li key={value}>
+              <label className={styles.filterOption}>
+                <input
+                  type="checkbox"
+                  checked={filters[group.key].includes(value)}
+                  onChange={() => toggleFilter(group.key, value)}
+                />
+                <span>{value}</span>
+              </label>
+            </li>
+          ))}
+        </ul>
+      </fieldset>
+    );
+  }
+
   const visibleBooks = filteredBooks.slice(0, visibleCount);
 
   return (
     <section className={`section ${styles.section}`} aria-labelledby="books-title">
       <div className="container">
         <h1 id="books-title" className={styles.title}>
-          <strong className="hl">Books</strong>
+          <strong className="hl">Our Books</strong>
         </h1>
         <p className={styles.p}>Books for all ages and every occasion</p>
 
         <div className={styles.catalog}>
           <aside className={styles.filters} aria-label="Filter books">
-            <div className={styles.filterHeader}>
-              <h2 className={styles.filterHeading}>Filters</h2>
-              <button type="button" className={styles.clearButton} onClick={clearFilters}>
-                Clear filters
-              </button>
-            </div>
+            <button
+              type="button"
+              className={styles.filterToggle}
+              aria-expanded={filtersOpen}
+              aria-controls="book-catalog-filters"
+              onClick={() => setFiltersOpen((open) => !open)}
+            >
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M3 4h18l-7 8v7l-4 2v-9L3 4Z" />
+              </svg>
+              <span>Filter</span>
+            </button>
 
-            {filterGroups.map((group) => (
-              <fieldset key={group.key} className={styles.filterGroup}>
-                <legend className={styles.filterTitle}>{group.label}</legend>
-                <ul role="list" className={styles.filterOptions}>
-                  {group.values.map((value) => (
-                    <li key={value}>
-                      <label className={styles.filterOption}>
-                        <input
-                          type="checkbox"
-                          checked={filters[group.key].includes(value)}
-                          onChange={() => toggleFilter(group.key, value)}
-                        />
-                        <span>{value}</span>
-                      </label>
-                    </li>
+            <div
+              id="book-catalog-filters"
+              className={`${styles.filterContent} ${filtersOpen ? styles.filterContentOpen : ""}`}
+            >
+              <div className={styles.filterHeader}>
+                <h2 className={styles.filterHeading}>Filters</h2>
+                <button type="button" className={styles.clearButton} onClick={clearFilters}>
+                  Clear filters
+                </button>
+              </div>
+
+              <div className={styles.desktopFilterGroups}>{filterGroups.map(renderFilterGroup)}</div>
+
+              <div className={styles.mobileFilterGroups}>
+                <div className={styles.filterTabs} role="tablist" aria-label="Filter categories">
+                  {filterGroups.map((group, index) => (
+                    <button
+                      key={group.key}
+                      id={`book-filter-tab-${group.key}`}
+                      type="button"
+                      role="tab"
+                      className={`${styles.filterTab} ${activeFilterTab === group.key ? styles.filterTabActive : ""}`}
+                      aria-selected={activeFilterTab === group.key}
+                      aria-controls="book-filter-tab-panel"
+                      tabIndex={activeFilterTab === group.key ? 0 : -1}
+                      onClick={() => setActiveFilterTab(group.key)}
+                      onKeyDown={(event) => {
+                        let nextIndex = index;
+                        if (event.key === "ArrowRight") nextIndex = (index + 1) % filterGroups.length;
+                        else if (event.key === "ArrowLeft") {
+                          nextIndex = (index - 1 + filterGroups.length) % filterGroups.length;
+                        } else if (event.key === "Home") nextIndex = 0;
+                        else if (event.key === "End") nextIndex = filterGroups.length - 1;
+                        else return;
+
+                        event.preventDefault();
+                        const nextGroup = filterGroups[nextIndex];
+                        event.currentTarget.parentElement
+                          .querySelectorAll('[role="tab"]')
+                          [nextIndex].focus();
+                        setActiveFilterTab(nextGroup.key);
+                      }}
+                    >
+                      {group.label}
+                    </button>
                   ))}
-                </ul>
-              </fieldset>
-            ))}
+                </div>
+                <div
+                  id="book-filter-tab-panel"
+                  role="tabpanel"
+                  aria-labelledby={`book-filter-tab-${activeFilterGroup.key}`}
+                  className={styles.mobileFilterPanel}
+                  tabIndex={0}
+                >
+                  {renderFilterGroup(activeFilterGroup)}
+                </div>
+              </div>
+            </div>
           </aside>
 
-          <div className={styles.results}>
-            <div className={styles.toolbar}>
-              <label className={styles.sortControl}>
-                <span>Sort by</span>
-                <select value={sortBy} onChange={(event) => setSortBy(event.target.value)}>
-                  <option value="featured">Featured</option>
-                  <option value="price-ascending">Price: low to high</option>
-                  <option value="price-descending">Price: high to low</option>
-                  <option value="title">Name</option>
-                </select>
-              </label>
-            </div>
+          <div className={styles.toolbar}>
+            <label className={styles.sortControl}>
+              <span>Sort by</span>
+              <select value={sortBy} onChange={(event) => setSortBy(event.target.value)}>
+                {SORT_OPTIONS.map((option) => (
+                  <option key={option.value} value={option.value}>
+                    {option.label}
+                  </option>
+                ))}
+              </select>
+            </label>
 
+            <div className={styles.mobileSort}>
+              <button
+                type="button"
+                className={styles.mobileSortToggle}
+                aria-expanded={sortMenuOpen}
+                aria-controls="book-catalog-sort-options"
+                onClick={() => setSortMenuOpen((open) => !open)}
+              >
+                <span>Sort by</span>
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="m6 9 6 6 6-6" />
+                </svg>
+              </button>
+              <div
+                id="book-catalog-sort-options"
+                className={`${styles.sortMenu} ${sortMenuOpen ? styles.sortMenuOpen : ""}`}
+                role="group"
+                aria-label="Sort options"
+              >
+                {SORT_OPTIONS.map((option) => (
+                  <button
+                    key={option.value}
+                    type="button"
+                    aria-pressed={sortBy === option.value}
+                    onClick={() => {
+                      setSortBy(option.value);
+                      setSortMenuOpen(false);
+                    }}
+                  >
+                    {option.label}
+                  </button>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          <div className={styles.results}>
             {visibleBooks.length > 0 ? (
               <ul role="list" className={styles.grid}>
                 {visibleBooks.map((book) => (
