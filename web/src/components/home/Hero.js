@@ -13,8 +13,8 @@ export default function Hero() {
             Give someone a story where they are the hero
           </h1>
           <p className={`lead ${styles.lead}`}>
-            Beautifully crafted, deeply personalized storybooks for kids and adults. Celebrate
-            birthdays, anniversaries, milestones and every relationship that matters.
+            Beautifully crafted, deeply personalized storybooks for kids and adults. <br/> Celebrate
+            birthdays, anniversaries, milestones and <strong className="hl"> every relationship <br/> that matters.</strong>
           </p>
           <div className={styles.actions}>
             <Button href="/books" arrow={false}>
@@ -27,8 +27,8 @@ export default function Hero() {
         </div>
         <div className={styles.mediaWrap}>
           <Image
-            src="/herobg.png"
-            alt="A smiling heart surrounded by storybooks and stars"
+            src="/herobg.webp"
+            alt="A mother reading a personalized storybook to her child"
             width={626}
             height={398}
             priority
