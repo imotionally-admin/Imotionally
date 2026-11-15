@@ -22,8 +22,9 @@
 .icon {
   display: block;
   flex-shrink: 0;
-  width: var(--space-8);
-  height: var(--space-8);
+  width: var(--space-12);
+  height: var(--space-12);
+  object-fit: contain;
 }
 
 .title {
@@ -39,6 +40,11 @@
 }
 
 @media (min-width: 40em) {
+  .icon {
+    width: var(--space-16);
+    height: var(--space-16);
+  }
+
   .steps {
     grid-template-columns: repeat(2, 1fr);
   }
