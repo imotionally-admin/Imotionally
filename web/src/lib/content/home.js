@@ -32,10 +32,10 @@ export const OCCASIONS = [
 ];
 
 export const STEPS = [
-  { title: "Build your character", text: LOREM_SHORT },
-  { title: "Choose your cover", text: LOREM_SHORT },
-  { title: "Add your message", text: LOREM_SHORT },
-  { title: "Review & order", text: LOREM_SHORT },
+  { title: "Build your character", text: LOREM_SHORT, icon: "character" },
+  { title: "Choose your cover", text: LOREM_SHORT, icon: "cover" },
+  { title: "Add your message", text: LOREM_SHORT, icon: "message" },
+  { title: "Review & order", text: LOREM_SHORT, icon: "review" },
 ];
 
 export const REVIEWS = [
