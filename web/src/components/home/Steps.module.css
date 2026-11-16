@@ -1,5 +1,5 @@
 .section {
-  padding-block: clamp(var(--space-5), 1rem + 1.5vw, var(--space-10));
+  padding-block: clamp(var(--space-4), 1rem + 1vw, var(--space-4));
 }
 
 .band {
