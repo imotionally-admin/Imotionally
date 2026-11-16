@@ -36,7 +36,7 @@ export default function Steps() {
           id="steps-title"
           title={
             <>
-              Create your Book in <strong className="hl">4 easy steps</strong>
+              Create your book in <strong className="hl">4 easy steps</strong>
             </>
           }
         />
