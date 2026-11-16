@@ -14,7 +14,7 @@ export default function Hero() {
           </h1>
           <p className={`lead ${styles.lead}`}>
             Beautifully crafted, deeply personalized storybooks for kids and adults. <br/> Celebrate
-            birthdays, anniversaries, milestones and <strong className="hl"> every relationship <br/> that matters.</strong>
+            birthdays, anniversaries, milestones and  every relationship <br/> that matters.
           </p>
           <div className={styles.actions}>
             <Button href="/books" arrow={false}>

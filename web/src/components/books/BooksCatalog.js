@@ -231,78 +231,84 @@ function BooksCatalogContent({ books, selectedRecipient, selectedOccasion }) {
             </div>
           </aside>
 
-          <div className={styles.toolbar}>
-            <label className={styles.sortControl}>
-              <span>Sort by</span>
-              <select value={sortBy} onChange={(event) => setSortBy(event.target.value)}>
-                {SORT_OPTIONS.map((option) => (
-                  <option key={option.value} value={option.value}>
-                    {option.label}
-                  </option>
-                ))}
-              </select>
-            </label>
-
-            <div className={styles.mobileSort}>
-              <button
-                type="button"
-                className={styles.mobileSortToggle}
-                aria-expanded={sortMenuOpen}
-                aria-controls="book-catalog-sort-options"
-                onClick={() => setSortMenuOpen((open) => !open)}
-              >
+          <div className={styles.catalogContent}>
+            <div className={styles.toolbar}>
+              <label className={styles.sortControl}>
                 <span>Sort by</span>
-                <svg viewBox="0 0 24 24" aria-hidden="true">
-                  <path d="m6 9 6 6 6-6" />
-                </svg>
-              </button>
-              <div
-                id="book-catalog-sort-options"
-                className={`${styles.sortMenu} ${sortMenuOpen ? styles.sortMenuOpen : ""}`}
-                role="group"
-                aria-label="Sort options"
-              >
-                {SORT_OPTIONS.map((option) => (
-                  <button
-                    key={option.value}
-                    type="button"
-                    aria-pressed={sortBy === option.value}
-                    onClick={() => {
-                      setSortBy(option.value);
-                      setSortMenuOpen(false);
-                    }}
-                  >
-                    {option.label}
-                  </button>
-                ))}
+                <span className={styles.sortSelect}>
+                  <select value={sortBy} onChange={(event) => setSortBy(event.target.value)}>
+                    {SORT_OPTIONS.map((option) => (
+                      <option key={option.value} value={option.value}>
+                        {option.label}
+                      </option>
+                    ))}
+                  </select>
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="m6 9 6 6 6-6" />
+                  </svg>
+                </span>
+              </label>
+              <div className={styles.mobileSort}>
+                <button
+                  type="button"
+                  className={styles.mobileSortToggle}
+                  aria-expanded={sortMenuOpen}
+                  aria-controls="book-catalog-sort-options"
+                  onClick={() => setSortMenuOpen((open) => !open)}
+                >
+                  <span>Sort by</span>
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="m6 9 6 6 6-6" />
+                  </svg>
+                </button>
+                <div
+                  id="book-catalog-sort-options"
+                  className={`${styles.sortMenu} ${sortMenuOpen ? styles.sortMenuOpen : ""}`}
+                  role="group"
+                  aria-label="Sort options"
+                >
+                  {SORT_OPTIONS.map((option) => (
+                    <button
+                      key={option.value}
+                      type="button"
+                      aria-pressed={sortBy === option.value}
+                      onClick={() => {
+                        setSortBy(option.value);
+                        setSortMenuOpen(false);
+                      }}
+                    >
+                      {option.label}
+                    </button>
+                  ))}
+                </div>
               </div>
             </div>
-          </div>
 
-          <div className={styles.results}>
-            {visibleBooks.length > 0 ? (
-              <ul role="list" className={styles.grid}>
-                {visibleBooks.map((book) => (
-                  <li key={book.id} className="reveal">
-                    <BookCard book={book} />
-                  </li>
-                ))}
-              </ul>
-            ) : (
-              <p className={styles.emptyState} role="status">
-                No books match these filters. Try clearing one or more options.
-              </p>
-            )}
+            <div className={styles.results}>
+              {visibleBooks.length > 0 ? (
+                <ul role="list" className={styles.grid}>
+                  {visibleBooks.map((book) => (
+                    <li key={book.id}>
+                      <BookCard book={book} />
+                    </li>
+                  ))}
+                </ul>
+              ) : (
+                <p className={styles.emptyState} role="status">
+                  No books match these filters. Try clearing one or more options.
+                </p>
+              )}
 
-            {visibleBooks.length === INITIAL_VISIBLE_BOOKS && visibleBooks.length < filteredBooks.length && (
-              <button
-                type="button"
-                className={styles.viewMore}
-                onClick={loadMoreBooks}
-              >
-                Load more
-              </button>
-            )}
+              {visibleBooks.length === INITIAL_VISIBLE_BOOKS && visibleBooks.length < filteredBooks.length && (
+                <button
+                  type="button"
+                  className={styles.viewMore}
+                  onClick={loadMoreBooks}
+                >
+                  Load more
+                </button>
+              )}
+            </div>
           </div>
         </div>
       </div>

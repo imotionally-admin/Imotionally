@@ -9,12 +9,12 @@
 
 .offerBar {
   display: grid;
-  min-height: 2.25rem;
+  min-height: 2rem;
   place-items: center;
   padding-inline: var(--space-4);
   background: #300c39;
   color: #fff;
-  font-size: var(--text-s);
+  font-size: var(--text-xs);
   text-align: center;
 }
 
