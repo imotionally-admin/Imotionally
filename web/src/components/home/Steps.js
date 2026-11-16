@@ -28,7 +28,7 @@ export default function Steps() {
   return (
     <section
       id="how-it-works"
-      className={`section ${styles.section}`}
+      className={styles.section}
       aria-labelledby="steps-title"
     >
       <div className="container">
