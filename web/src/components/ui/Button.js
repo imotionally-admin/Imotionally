@@ -9,13 +9,20 @@ export default function Button({
   href,
   loading = false,
   fullWidth = false,
+  ghostOnHover = false,
   arrow = true,
   className = "",
   type = "button",
   disabled = false,
   ...rest
 }) {
-  const classes = [styles.button, styles[variant], fullWidth ? styles.full : "", className]
+  const classes = [
+    styles.button,
+    styles[variant],
+    fullWidth ? styles.full : "",
+    ghostOnHover ? styles.ghostOnHover : "",
+    className,
+  ]
     .filter(Boolean)
     .join(" ");
 

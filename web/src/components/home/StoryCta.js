@@ -13,7 +13,9 @@ export default function StoryCta() {
           <h2 id="cta-title" className={styles.title}>
             Got your own story? <strong className="hl">Let&apos;s get that illustrated.</strong>
           </h2>
-          <Button href="/contact">Get in touch</Button>
+          <Button href="/contact" ghostOnHover>
+            Get in touch
+          </Button>
         </div>
       </div>
     </section>

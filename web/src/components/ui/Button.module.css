@@ -50,6 +50,14 @@
   box-shadow: var(--shadow-md);
 }
 
+.ghostOnHover:hover:not(:disabled),
+.ghostOnHover:focus-visible:not(:disabled) {
+  border-color: var(--color-p101);
+  background: transparent;
+  color: var(--color-p101);
+  box-shadow: none;
+}
+
 .button:disabled {
   background: var(--color-a102);
   border-color: transparent;

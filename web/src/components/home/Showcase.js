@@ -15,7 +15,9 @@ export default function Showcase() {
           <p className="lead">
             Because it has their name on the cover and your words inside, it&apos;s truly one of a kind.
           </p>
-          <Button href="/books">Explore our Books</Button>
+          <Button href="/books" ghostOnHover>
+            Explore our Books
+          </Button>
         </div>
       </div>
     </section>
