@@ -287,9 +287,9 @@ function BooksCatalogContent({ books, selectedRecipient, selectedOccasion }) {
             <div className={styles.results}>
               {visibleBooks.length > 0 ? (
                 <ul role="list" className={styles.grid}>
-                  {visibleBooks.map((book) => (
+                  {visibleBooks.map((book, index) => (
                     <li key={book.id}>
-                      <BookCard book={book} />
+                      <BookCard book={book} loading={index === 0 ? "eager" : "lazy"} />
                     </li>
                   ))}
                 </ul>

@@ -8,6 +8,7 @@ export default function MediaFrame({
   ratio = "landscape",
   label,
   sizes,
+  loading,
   priority = false,
   className = "",
 }) {
@@ -19,6 +20,7 @@ export default function MediaFrame({
           alt={alt}
           fill
           sizes={sizes}
+          loading={loading}
           priority={priority}
           className={styles.image}
         />

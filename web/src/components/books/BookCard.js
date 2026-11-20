@@ -5,7 +5,7 @@ import styles from "./BookCard.module.css";
 
 const COVER_SIZES = "(min-width: 75em) 25vw, (min-width: 40em) 45vw, 100vw";
 
-export default function BookCard({ book }) {
+export default function BookCard({ book, loading = "lazy" }) {
   const href = `/books/${book.slug}`;
 
   return (
@@ -16,6 +16,7 @@ export default function BookCard({ book }) {
           ratio="square"
           label={book.title}
           sizes={COVER_SIZES}
+          loading={loading}
           className={styles.cover}
         />
         <div className={styles.body}>
