@@ -47,6 +47,18 @@
   background: var(--color-white);
 }
 
+.submitStoryCta {
+  border: var(--border-width) solid var(--color-p101);
+  background: var(--color-p101);
+  color: var(--color-p105);
+}
+
+.submitStoryCta:hover {
+  border-color: var(--color-p101);
+  background: transparent;
+  color: var(--color-p101);
+}
+
 .error {
   font-size: var(--text-p3);
   color: var(--color-s102);

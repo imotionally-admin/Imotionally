@@ -1,5 +1,6 @@
 import { Suspense } from "react";
 import { notFound } from "next/navigation";
+import BookDetail from "@/components/books/BookDetail";
 import { getBookBySlug, getPublishedBooks } from "@/lib/data/books";
 
 export async function generateStaticParams() {
@@ -23,5 +24,5 @@ async function BookPageContent({ params }) {
     notFound();
   }
 
-  return <h1>{book.title}</h1>;
+  return <BookDetail book={book} />;
 }

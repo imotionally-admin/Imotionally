@@ -6,7 +6,7 @@ import { useToast } from "@/context/ToastContext";
 import { isValidEmail } from "@/lib/validation/email";
 import styles from "./NewsletterForm.module.css";
 
-export default function NewsletterForm() {
+export default function NewsletterForm({ variant = "default" }) {
   const toast = useToast();
   const inputId = useId();
   const [email, setEmail] = useState("");
@@ -42,7 +42,11 @@ export default function NewsletterForm() {
           onChange={(event) => setEmail(event.target.value)}
           aria-invalid={error ? true : undefined}
         />
-        <button type="submit" className={styles.submit} aria-label="Subscribe">
+        <button
+          type="submit"
+          className={`${styles.submit} ${variant === "storyCta" ? styles.submitStoryCta : ""}`}
+          aria-label="Subscribe"
+        >
           <Icon name="arrow" size="sm" />
         </button>
       </div>
