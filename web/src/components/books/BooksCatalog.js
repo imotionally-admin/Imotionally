@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import BookCard from "@/components/books/BookCard";
 import { AUDIENCES, OCCASIONS } from "@/lib/content/home";
@@ -9,9 +9,12 @@ import styles from "./BooksCatalog.module.css";
 const INITIAL_VISIBLE_BOOKS = 9;
 const SORT_OPTIONS = [
   { value: "featured", label: "Featured" },
+  { value: "relevance", label: "Most relevant" },
+  { value: "best-selling", label: "Best selling" },
   { value: "price-ascending", label: "Price: low to high" },
   { value: "price-descending", label: "Price: high to low" },
   { value: "title", label: "Name" },
+  { value: "new-arrivals", label: "New arrivals (Date, new to old)" },
 ];
 const FILTER_GROUPS = [
   {
@@ -53,14 +56,54 @@ export default function BooksCatalog({ books }) {
 function BooksCatalogContent({ books, selectedRecipient, selectedOccasion }) {
   const [filtersOpen, setFiltersOpen] = useState(false);
   const [sortMenuOpen, setSortMenuOpen] = useState(false);
-  const [activeFilterTab, setActiveFilterTab] = useState("recipient");
   const [filters, setFilters] = useState(() => ({
+    ...EMPTY_FILTERS,
+    recipient: FILTER_GROUPS[0].values.includes(selectedRecipient) ? [selectedRecipient] : [],
+    occasion: FILTER_GROUPS[1].values.includes(selectedOccasion) ? [selectedOccasion] : [],
+  }));
+  const [draftFilters, setDraftFilters] = useState(() => ({
     ...EMPTY_FILTERS,
     recipient: FILTER_GROUPS[0].values.includes(selectedRecipient) ? [selectedRecipient] : [],
     occasion: FILTER_GROUPS[1].values.includes(selectedOccasion) ? [selectedOccasion] : [],
   }));
   const [sortBy, setSortBy] = useState("featured");
   const [visibleCount, setVisibleCount] = useState(INITIAL_VISIBLE_BOOKS);
+  const filterRef = useRef(null);
+  const sortRef = useRef(null);
+
+  useEffect(() => {
+    function closeOpenMenus(event) {
+      if (filterRef.current && !filterRef.current.contains(event.target)) {
+        setFiltersOpen(false);
+      }
+      if (sortRef.current && !sortRef.current.contains(event.target)) {
+        setSortMenuOpen(false);
+      }
+    }
+
+    function handleEscape(event) {
+      if (event.key === "Escape") {
+        setFiltersOpen(false);
+        setSortMenuOpen(false);
+      }
+    }
+
+    document.addEventListener("pointerdown", closeOpenMenus);
+    document.addEventListener("keydown", handleEscape);
+    return () => {
+      document.removeEventListener("pointerdown", closeOpenMenus);
+      document.removeEventListener("keydown", handleEscape);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (!filtersOpen && !sortMenuOpen) return;
+
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [filtersOpen, sortMenuOpen]);
 
   const filterGroups = useMemo(
     () =>
@@ -74,8 +117,6 @@ function BooksCatalogContent({ books, selectedRecipient, selectedOccasion }) {
       })),
     [books],
   );
-
-  const activeFilterGroup = filterGroups.find((group) => group.key === activeFilterTab) ?? filterGroups[0];
 
   const filteredBooks = useMemo(() => {
     const matchesFilters = books.filter((book) =>
@@ -101,23 +142,43 @@ function BooksCatalogContent({ books, selectedRecipient, selectedOccasion }) {
       return [...matchesFilters].sort((first, second) => first.title.localeCompare(second.title));
     }
 
+    if (sortBy === "relevance") {
+      return [...matchesFilters].sort((first, second) => Number(second.featured) - Number(first.featured));
+    }
+
+    if (sortBy === "best-selling") {
+      return [...matchesFilters];
+    }
+
+    if (sortBy === "new-arrivals") {
+      return [...matchesFilters].reverse();
+    }
+
     return matchesFilters;
   }, [books, filterGroups, filters, sortBy]);
 
   function toggleFilter(group, value) {
-    setFilters((current) => {
+    setDraftFilters((current) => {
       const selected = new Set(current[group]);
       if (selected.has(value)) selected.delete(value);
       else selected.add(value);
 
       return { ...current, [group]: [...selected] };
     });
-    setVisibleCount(INITIAL_VISIBLE_BOOKS);
   }
 
   function clearFilters() {
-    setFilters(EMPTY_FILTERS);
+    setDraftFilters({
+      recipient: [],
+      occasion: [],
+      vibe: [],
+    });
+  }
+
+  function applyFilters() {
+    setFilters(draftFilters);
     setVisibleCount(INITIAL_VISIBLE_BOOKS);
+    setFiltersOpen(false);
   }
 
   function loadMoreBooks() {
@@ -134,7 +195,7 @@ function BooksCatalogContent({ books, selectedRecipient, selectedOccasion }) {
               <label className={styles.filterOption}>
                 <input
                   type="checkbox"
-                  checked={filters[group.key].includes(value)}
+                  checked={draftFilters[group.key].includes(value)}
                   onChange={() => toggleFilter(group.key, value)}
                 />
                 <span>{value}</span>
@@ -157,13 +218,16 @@ function BooksCatalogContent({ books, selectedRecipient, selectedOccasion }) {
         <p className={styles.p}>Books for all ages and every occasion</p>
 
         <div className={styles.catalog}>
-          <aside className={styles.filters} aria-label="Filter books">
+          <aside ref={filterRef} className={styles.filters} aria-label="Filter books">
             <button
               type="button"
               className={styles.filterToggle}
               aria-expanded={filtersOpen}
               aria-controls="book-catalog-filters"
-              onClick={() => setFiltersOpen((open) => !open)}
+              onClick={() => {
+                setSortMenuOpen(false);
+                setFiltersOpen((open) => !open);
+              }}
             >
               <svg viewBox="0 0 24 24" aria-hidden="true">
                 <path d="M3 4h18l-7 8v7l-4 2v-9L3 4Z" />
@@ -171,63 +235,46 @@ function BooksCatalogContent({ books, selectedRecipient, selectedOccasion }) {
               <span>Filter</span>
             </button>
 
+            <button
+              type="button"
+              className={`${styles.mobileScrim} ${filtersOpen ? styles.mobileScrimOpen : ""}`}
+              onClick={() => setFiltersOpen(false)}
+              aria-label="Close filters"
+              tabIndex={filtersOpen ? 0 : -1}
+            />
+
             <div
               id="book-catalog-filters"
               className={`${styles.filterContent} ${filtersOpen ? styles.filterContentOpen : ""}`}
             >
               <div className={styles.filterHeader}>
                 <h2 className={styles.filterHeading}>Filters</h2>
-                <button type="button" className={styles.clearButton} onClick={clearFilters}>
-                  Clear filters
-                </button>
+                <div className={styles.filterHeaderActions}>
+                  <button type="button" className={styles.clearButton} onClick={clearFilters}>
+                    Clear filters
+                  </button>
+                  <button
+                    type="button"
+                    className={styles.filterCollapseButton}
+                    aria-label="Collapse filters"
+                    onClick={() => setFiltersOpen(false)}
+                  >
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                      <path d="M6 6l12 12M18 6 6 18" />
+                    </svg>
+                  </button>
+                </div>
               </div>
 
               <div className={styles.desktopFilterGroups}>{filterGroups.map(renderFilterGroup)}</div>
 
               <div className={styles.mobileFilterGroups}>
-                <div className={styles.filterTabs} role="tablist" aria-label="Filter categories">
-                  {filterGroups.map((group, index) => (
-                    <button
-                      key={group.key}
-                      id={`book-filter-tab-${group.key}`}
-                      type="button"
-                      role="tab"
-                      className={`${styles.filterTab} ${activeFilterTab === group.key ? styles.filterTabActive : ""}`}
-                      aria-selected={activeFilterTab === group.key}
-                      aria-controls="book-filter-tab-panel"
-                      tabIndex={activeFilterTab === group.key ? 0 : -1}
-                      onClick={() => setActiveFilterTab(group.key)}
-                      onKeyDown={(event) => {
-                        let nextIndex = index;
-                        if (event.key === "ArrowRight") nextIndex = (index + 1) % filterGroups.length;
-                        else if (event.key === "ArrowLeft") {
-                          nextIndex = (index - 1 + filterGroups.length) % filterGroups.length;
-                        } else if (event.key === "Home") nextIndex = 0;
-                        else if (event.key === "End") nextIndex = filterGroups.length - 1;
-                        else return;
-
-                        event.preventDefault();
-                        const nextGroup = filterGroups[nextIndex];
-                        event.currentTarget.parentElement
-                          .querySelectorAll('[role="tab"]')
-                          [nextIndex].focus();
-                        setActiveFilterTab(nextGroup.key);
-                      }}
-                    >
-                      {group.label}
-                    </button>
-                  ))}
-                </div>
-                <div
-                  id="book-filter-tab-panel"
-                  role="tabpanel"
-                  aria-labelledby={`book-filter-tab-${activeFilterGroup.key}`}
-                  className={styles.mobileFilterPanel}
-                  tabIndex={0}
-                >
-                  {renderFilterGroup(activeFilterGroup)}
-                </div>
+                {filterGroups.map(renderFilterGroup)}
               </div>
+
+              <button type="button" className={styles.applyButton} onClick={applyFilters}>
+                Apply
+              </button>
             </div>
           </aside>
 
@@ -248,25 +295,48 @@ function BooksCatalogContent({ books, selectedRecipient, selectedOccasion }) {
                   </svg>
                 </span>
               </label>
-              <div className={styles.mobileSort}>
+              <div ref={sortRef} className={styles.mobileSort}>
                 <button
                   type="button"
                   className={styles.mobileSortToggle}
                   aria-expanded={sortMenuOpen}
                   aria-controls="book-catalog-sort-options"
-                  onClick={() => setSortMenuOpen((open) => !open)}
+                  onClick={() => {
+                    setFiltersOpen(false);
+                    setSortMenuOpen((open) => !open);
+                  }}
                 >
                   <span>Sort by</span>
                   <svg viewBox="0 0 24 24" aria-hidden="true">
                     <path d="m6 9 6 6 6-6" />
                   </svg>
                 </button>
+                <button
+                  type="button"
+                  className={`${styles.mobileScrim} ${sortMenuOpen ? styles.mobileScrimOpen : ""}`}
+                  onClick={() => setSortMenuOpen(false)}
+                  aria-label="Close sort options"
+                  tabIndex={sortMenuOpen ? 0 : -1}
+                />
                 <div
                   id="book-catalog-sort-options"
                   className={`${styles.sortMenu} ${sortMenuOpen ? styles.sortMenuOpen : ""}`}
                   role="group"
                   aria-label="Sort options"
                 >
+                  <div className={styles.sortMenuHeader}>
+                    <span>Sort by:</span>
+                    <button
+                      type="button"
+                      className={styles.sortMenuClose}
+                      onClick={() => setSortMenuOpen(false)}
+                      aria-label="Close sort options"
+                    >
+                      <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M6 6l12 12M18 6 6 18" />
+                      </svg>
+                    </button>
+                  </div>
                   {SORT_OPTIONS.map((option) => (
                     <button
                       key={option.value}
