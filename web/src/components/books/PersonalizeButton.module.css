@@ -1,0 +1,25 @@
+@media (max-width: 55.999em) {
+  .personalize {
+    order: 5;
+  }
+}
+
+@media (max-width: 39.999em) {
+  .personalize {
+    position: fixed;
+    z-index: 20;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    padding: var(--space-3) max(var(--space-4), env(safe-area-inset-right))
+      calc(var(--space-3) + env(safe-area-inset-bottom))
+      max(var(--space-4), env(safe-area-inset-left));
+    background: var(--color-white);
+    box-shadow: 0 -0.25rem 1rem rgb(0 0 0 / 10%);
+  }
+
+  .stopped {
+    position: absolute;
+    bottom: 0;
+  }
+}

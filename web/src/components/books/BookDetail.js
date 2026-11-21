@@ -109,31 +109,37 @@ export default function BookDetail({ book }) {
         </nav>
 
         <section className={styles.product} aria-labelledby="book-title">
-          <BookGallery title={book.title} />
+          <div className={styles.galleryArea}>
+            <BookGallery title={book.title} />
+          </div>
 
           <div className={styles.summary}>
-            <p className={styles.eyebrow}>A personalized storybook</p>
-            <h1 id="book-title" className={styles.title}>
-              {book.title}
-            </h1>
-            <p className={styles.description}>{book.description}</p>
+            <div className={styles.productIntro}>
+              <p className={styles.eyebrow}>A personalized storybook</p>
+              <h1 id="book-title" className={styles.title}>
+                {book.title}
+              </h1>
+              <p className={styles.description}>{book.description}</p>
+            </div>
 
-            <ul className={styles.benefits} aria-label="Book highlights">
-              {BENEFITS.map((benefit) => (
-                <li key={benefit}>
-                  <Icon name="check" size="sm" />
-                  <span>{benefit}</span>
-                </li>
-              ))}
-            </ul>
+            <div className={styles.summaryDetails}>
+              <ul className={styles.benefits} aria-label="Book highlights">
+                {BENEFITS.map((benefit) => (
+                  <li key={benefit}>
+                    <Icon name="check" size="sm" />
+                    <span>{benefit}</span>
+                  </li>
+                ))}
+              </ul>
 
-            <p className={styles.price}>
-              <span>Starting from</span>
-              <strong>{formatPrice(book.priceFrom)}</strong>
-            </p>
-            <PersonalizeButton />
-            <div className={styles.productFaqs}>
-              <Accordion items={BOOK_FAQS} />
+              <p className={styles.price}>
+                <span>From</span>
+                <strong>{formatPrice(book.priceFrom)}</strong>
+              </p>
+              <PersonalizeButton />
+              <div className={styles.productFaqs}>
+                <Accordion items={BOOK_FAQS} />
+              </div>
             </div>
           </div>
         </section>
@@ -200,6 +206,9 @@ export default function BookDetail({ book }) {
           </div>
         </div>
       </section>
+
+      <div className={styles.ctaSpace} aria-hidden="true" />
+      <div id="book-page-end" className={styles.endSentinel} aria-hidden="true" />
     </article>
   );
 }
