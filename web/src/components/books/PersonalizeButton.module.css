@@ -20,6 +20,13 @@
 
   .stopped {
     position: absolute;
-    bottom: 0;
+    top: 0;
+    right: 0;
+    bottom: auto;
+    left: 0;
+    z-index: auto;
+    padding: 0;
+    background: transparent;
+    box-shadow: none;
   }
 }

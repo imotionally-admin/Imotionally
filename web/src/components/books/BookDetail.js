@@ -136,8 +136,10 @@ export default function BookDetail({ book }) {
                 <span>From</span>
                 <strong>{formatPrice(book.priceFrom)}</strong>
               </p>
-              <PersonalizeButton />
-              <div className={styles.productFaqs}>
+              <div className={styles.personalizeArea}>
+                <PersonalizeButton />
+              </div>
+              <div id="product-faqs" className={styles.productFaqs}>
                 <Accordion items={BOOK_FAQS} />
               </div>
             </div>
@@ -193,7 +195,7 @@ export default function BookDetail({ book }) {
         aria-labelledby="newsletter-title"
       >
         <div className="container">
-          <div className={storyCtaStyles.box}>
+          <div className={`${storyCtaStyles.box} ${styles.newsletterBox}`}>
             <h2 id="newsletter-title" className={storyCtaStyles.title}>
               Subscribe to our newsletter
             </h2>
@@ -207,8 +209,6 @@ export default function BookDetail({ book }) {
         </div>
       </section>
 
-      <div className={styles.ctaSpace} aria-hidden="true" />
-      <div id="book-page-end" className={styles.endSentinel} aria-hidden="true" />
     </article>
   );
 }

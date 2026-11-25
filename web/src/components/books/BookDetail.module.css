@@ -188,6 +188,11 @@
 
 .newsletterForm {
   width: min(100%, 32rem);
+  margin-top: var(--space-1);
+}
+
+.newsletterBox {
+  gap: var(--space-6);
 }
 
 @media (max-width: 55.999em) {
@@ -226,24 +231,21 @@
 }
 
 @media (max-width: 39.999em) {
+  .personalizeArea {
+    position: relative;
+    min-height: var(--button-height);
+  }
+
   .container {
     padding-block: var(--space-4) var(--space-10);
   }
 
   .breadcrumbs {
-    margin-bottom: var(--space-4);
+    margin-bottom: var(--space-8);
   }
 
   .benefits {
     grid-template-columns: minmax(0, 1fr);
-  }
-
-  .ctaSpace {
-    height: calc(5.5rem + env(safe-area-inset-bottom));
-  }
-
-  .endSentinel {
-    height: 1px;
   }
 
   .product {

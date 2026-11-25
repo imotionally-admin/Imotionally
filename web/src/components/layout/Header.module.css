@@ -9,7 +9,7 @@
 
 .offerBar {
   display: grid;
-  min-height: 2rem;
+  min-height: var(--offer-bar-height);
   place-items: center;
   padding-inline: var(--space-4);
   background: #300c39;

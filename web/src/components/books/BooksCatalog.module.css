@@ -37,6 +37,7 @@
 }
 
 .filterToggle {
+  position: relative;
   display: flex;
   align-items: center;
   gap: var(--space-1);
@@ -44,6 +45,23 @@
   min-height: var(--button-height);
   color: var(--color-p101);
   font-size: var(--text-p3);
+}
+
+.filterIcon {
+  position: relative;
+  display: inline-flex;
+}
+
+.filterActiveIndicator {
+  display: none;
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 0.625rem;
+  height: 0.625rem;
+  border: 0.125rem solid var(--color-white);
+  border-radius: 50%;
+  background: var(--color-danger);
 }
 
 .filterToggle svg {
@@ -90,6 +108,10 @@
   font-size: var(--text-md);
   font-weight: var(--weight-semibold);
   color: var(--color-heading);
+}
+
+.filterGroupToggle {
+  display: none;
 }
 
 .clearButton {
@@ -382,6 +404,10 @@
     display: none;
   }
 
+  .applyButton {
+    display: none;
+  }
+
   .filterContent {
     display: block;
     position: static;
@@ -504,20 +530,55 @@
 
   .mobileFilterGroups .filterGroup {
     margin-top: var(--space-6);
-    padding-top: var(--space-5);
-    border-top: var(--border-width) solid var(--color-border);
   }
 
   .mobileFilterGroups .filterTitle {
     display: block;
     width: 100%;
+    padding-bottom: var(--space-3);
+    border-bottom: var(--border-width) solid var(--color-border);
     color: var(--color-p103);
+  }
+
+  .mobileFilterGroups .filterGroupToggle {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    color: inherit;
+    font: inherit;
+    text-align: left;
+    text-transform: uppercase;
+  }
+
+  .mobileFilterGroups .filterGroupToggle svg {
+    width: 1rem;
+    height: 1rem;
+    fill: none;
+    stroke: currentColor;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-width: 1.5;
+    transition: transform var(--duration-fast) var(--ease-out);
+  }
+
+  .mobileFilterGroups .filterGroupToggle[aria-expanded="false"] svg {
+    transform: rotate(180deg);
   }
 
   .mobileFilterGroups .filterOptions {
     display: flex;
     flex-direction: column;
     gap: var(--space-3);
+    margin-top: var(--space-4);
+  }
+
+  .mobileFilterGroups .filterOptionsCollapsed {
+    display: none;
+  }
+
+  .filterActiveIndicator {
+    display: block;
   }
 
   .sortControl {

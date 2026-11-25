@@ -1,30 +1,45 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Button from "@/components/ui/Button";
 import { useToast } from "@/context/ToastContext";
 import styles from "./PersonalizeButton.module.css";
 
 export default function PersonalizeButton() {
   const toast = useToast();
-  const [stoppedAtFooter, setStoppedAtFooter] = useState(false);
+  const [stoppedAtFaq, setStoppedAtFaq] = useState(false);
+  const personalizeRef = useRef(null);
 
   useEffect(() => {
-    const sentinel = document.getElementById("book-page-end");
-    if (!sentinel) return;
+    const faq = document.getElementById("product-faqs");
+    if (!faq) return;
 
-    const observer = new IntersectionObserver(([entry]) => {
-      setStoppedAtFooter(
-        entry.isIntersecting || entry.boundingClientRect.top < 0,
-      );
-    });
+    function updatePosition() {
+      if (!window.matchMedia("(max-width: 39.999em)").matches || window.scrollY === 0) {
+        setStoppedAtFaq(false);
+        return;
+      }
 
-    observer.observe(sentinel);
-    return () => observer.disconnect();
+      const faqTop = faq.getBoundingClientRect().top;
+      const buttonHeight = personalizeRef.current?.getBoundingClientRect().height ?? 0;
+      setStoppedAtFaq(faqTop <= window.innerHeight - buttonHeight);
+    }
+
+    window.addEventListener("scroll", updatePosition, { passive: true });
+    window.addEventListener("resize", updatePosition);
+    updatePosition();
+
+    return () => {
+      window.removeEventListener("scroll", updatePosition);
+      window.removeEventListener("resize", updatePosition);
+    };
   }, []);
 
   return (
-    <div className={`${styles.personalize} ${stoppedAtFooter ? styles.stopped : ""}`}>
+    <div
+      ref={personalizeRef}
+      className={`${styles.personalize} ${stoppedAtFaq ? styles.stopped : ""}`}
+    >
       <Button
         arrow={false}
         fullWidth

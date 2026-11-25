@@ -7,6 +7,7 @@ import { AUDIENCES, OCCASIONS } from "@/lib/content/home";
 import styles from "./BooksCatalog.module.css";
 
 const INITIAL_VISIBLE_BOOKS = 9;
+const DESKTOP_FILTERS_QUERY = "(min-width: 56em)";
 const SORT_OPTIONS = [
   { value: "featured", label: "Featured" },
   { value: "relevance", label: "Most relevant" },
@@ -56,6 +57,7 @@ export default function BooksCatalog({ books }) {
 function BooksCatalogContent({ books, selectedRecipient, selectedOccasion }) {
   const [filtersOpen, setFiltersOpen] = useState(false);
   const [sortMenuOpen, setSortMenuOpen] = useState(false);
+  const [collapsedFilterGroups, setCollapsedFilterGroups] = useState({});
   const [filters, setFilters] = useState(() => ({
     ...EMPTY_FILTERS,
     recipient: FILTER_GROUPS[0].values.includes(selectedRecipient) ? [selectedRecipient] : [],
@@ -158,21 +160,23 @@ function BooksCatalogContent({ books, selectedRecipient, selectedOccasion }) {
   }, [books, filterGroups, filters, sortBy]);
 
   function toggleFilter(group, value) {
-    setDraftFilters((current) => {
-      const selected = new Set(current[group]);
-      if (selected.has(value)) selected.delete(value);
-      else selected.add(value);
+    const selected = new Set(draftFilters[group]);
+    if (selected.has(value)) selected.delete(value);
+    else selected.add(value);
 
-      return { ...current, [group]: [...selected] };
-    });
+    const nextFilters = { ...draftFilters, [group]: [...selected] };
+    setDraftFilters(nextFilters);
+
+    if (window.matchMedia(DESKTOP_FILTERS_QUERY).matches) {
+      setFilters(nextFilters);
+      setVisibleCount(INITIAL_VISIBLE_BOOKS);
+    }
   }
 
   function clearFilters() {
-    setDraftFilters({
-      recipient: [],
-      occasion: [],
-      vibe: [],
-    });
+    setDraftFilters(EMPTY_FILTERS);
+    setFilters(EMPTY_FILTERS);
+    setVisibleCount(INITIAL_VISIBLE_BOOKS);
   }
 
   function applyFilters() {
@@ -181,15 +185,46 @@ function BooksCatalogContent({ books, selectedRecipient, selectedOccasion }) {
     setFiltersOpen(false);
   }
 
+  function toggleFilterGroup(group) {
+    setCollapsedFilterGroups((current) => ({
+      ...current,
+      [group]: !current[group],
+    }));
+  }
+
   function loadMoreBooks() {
     setVisibleCount((count) => Math.min(count + INITIAL_VISIBLE_BOOKS, filteredBooks.length));
   }
 
-  function renderFilterGroup(group) {
+  function renderFilterGroup(group, mobile = false) {
+    const collapsed = mobile && collapsedFilterGroups[group.key];
+    const optionsId = `mobile-filter-options-${group.key}`;
+
     return (
       <fieldset key={group.key} className={styles.filterGroup}>
-        <legend className={styles.filterTitle}>{group.label}</legend>
-        <ul role="list" className={styles.filterOptions}>
+        <legend className={styles.filterTitle}>
+          {mobile ? (
+            <button
+              type="button"
+              className={styles.filterGroupToggle}
+              aria-expanded={!collapsed}
+              aria-controls={optionsId}
+              onClick={() => toggleFilterGroup(group.key)}
+            >
+              <span>{group.label}</span>
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="m6 15 6-6 6 6" />
+              </svg>
+            </button>
+          ) : (
+            group.label
+          )}
+        </legend>
+        <ul
+          id={mobile ? optionsId : undefined}
+          role="list"
+          className={`${styles.filterOptions} ${collapsed ? styles.filterOptionsCollapsed : ""}`}
+        >
           {group.values.map((value) => (
             <li key={value}>
               <label className={styles.filterOption}>
@@ -208,6 +243,7 @@ function BooksCatalogContent({ books, selectedRecipient, selectedOccasion }) {
   }
 
   const visibleBooks = filteredBooks.slice(0, visibleCount);
+  const hasActiveFilters = Object.values(filters).some((selected) => selected.length > 0);
 
   return (
     <section className={`section ${styles.section}`} aria-labelledby="books-title">
@@ -229,9 +265,12 @@ function BooksCatalogContent({ books, selectedRecipient, selectedOccasion }) {
                 setFiltersOpen((open) => !open);
               }}
             >
-              <svg viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M3 4h18l-7 8v7l-4 2v-9L3 4Z" />
-              </svg>
+              <span className={styles.filterIcon}>
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M3 4h18l-7 8v7l-4 2v-9L3 4Z" />
+                </svg>
+                {hasActiveFilters && <span className={styles.filterActiveIndicator} aria-hidden="true" />}
+              </span>
               <span>Filter</span>
             </button>
 
@@ -266,10 +305,12 @@ function BooksCatalogContent({ books, selectedRecipient, selectedOccasion }) {
                 </div>
               </div>
 
-              <div className={styles.desktopFilterGroups}>{filterGroups.map(renderFilterGroup)}</div>
+              <div className={styles.desktopFilterGroups}>
+                {filterGroups.map((group) => renderFilterGroup(group))}
+              </div>
 
               <div className={styles.mobileFilterGroups}>
-                {filterGroups.map(renderFilterGroup)}
+                {filterGroups.map((group) => renderFilterGroup(group, true))}
               </div>
 
               <button type="button" className={styles.applyButton} onClick={applyFilters}>

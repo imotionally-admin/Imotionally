@@ -130,6 +130,8 @@
   --container-pad: clamp(1rem, 0.5rem + 2.5vw, 2rem);
   --measure: 65ch;
   --header-height: 4.5rem;
+  --offer-bar-height: 2rem;
+  --header-offset: calc(var(--header-height) + var(--offer-bar-height) + var(--border-width));
 
   --z-base: 1;
   --z-sticky: 100;

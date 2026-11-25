@@ -1,6 +1,6 @@
-import Link from "next/link";
 import MediaFrame from "@/components/ui/MediaFrame";
 import { formatPrice } from "@/utils/formatPrice";
+import BookCardLink from "./BookCardLink";
 import styles from "./BookCard.module.css";
 
 const COVER_SIZES = "(min-width: 75em) 25vw, (min-width: 40em) 45vw, 100vw";
@@ -9,7 +9,7 @@ export default function BookCard({ book, loading = "lazy" }) {
   const href = `/books/${book.slug}`;
 
   return (
-    <Link href={href} className={styles.cardLink}>
+    <BookCardLink href={href} className={styles.cardLink}>
       <article className={styles.card}>
         <MediaFrame
           src="/CoverBook.jpg"
@@ -30,6 +30,6 @@ export default function BookCard({ book, loading = "lazy" }) {
           </div>
         </div>
       </article>
-    </Link>
+    </BookCardLink>
   );
 }
