@@ -6,13 +6,16 @@ import { useCallback, useState } from "react";
 import Icon from "@/components/ui/Icon";
 import BrandLogo from "@/components/ui/BrandLogo";
 import MobileNav from "./MobileNav";
+import SearchPanel from "./SearchPanel";
 import { NAV_LINKS } from "@/utils/constants";
 import styles from "./Header.module.css";
 
 export default function Header({ cartCount = 0 }) {
   const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
+  const [searchOpen, setSearchOpen] = useState(false);
   const closeMenu = useCallback(() => setMenuOpen(false), []);
+  const closeSearch = useCallback(() => setSearchOpen(false), []);
 
   const isActive = (href) => {
     if (href === "/#home") return pathname === "/";
@@ -48,9 +51,16 @@ export default function Header({ cartCount = 0 }) {
           </nav>
 
           <div className={styles.actions}>
-            <Link href="/books" className={styles.iconButton} aria-label="Search books">
+            <button
+              type="button"
+              className={styles.iconButton}
+              aria-label="Search books"
+              aria-expanded={searchOpen}
+              aria-controls="store-search"
+              onClick={() => setSearchOpen(true)}
+            >
               <Icon name="search" />
-            </Link>
+            </button>
             <Link href="/login" className={styles.iconButton} aria-label="Account">
               <Icon name="user" />
             </Link>
@@ -81,6 +91,7 @@ export default function Header({ cartCount = 0 }) {
       </header>
 
       <MobileNav id="mobile-nav" open={menuOpen} onClose={closeMenu} links={NAV_LINKS} />
+      <SearchPanel id="store-search" open={searchOpen} onClose={closeSearch} />
     </>
   );
 }

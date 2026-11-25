@@ -8,7 +8,7 @@ export default function FeaturedBooks({ books }) {
   return (
     <section
       id="books"
-      className={`section ${styles.section}`}
+      className={styles.section}
       aria-labelledby="stories-title"
     >
       <div className="container">

@@ -132,7 +132,7 @@ export default function BookDetail({ book }) {
                 ))}
               </ul>
 
-              <p className={styles.price}>
+              <p id="book-price" className={styles.price}>
                 <span>From</span>
                 <strong>{formatPrice(book.priceFrom)}</strong>
               </p>
