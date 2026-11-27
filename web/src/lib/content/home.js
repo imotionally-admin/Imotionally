@@ -38,6 +38,24 @@ export const STEPS = [
   { title: "Review & order", text: LOREM_SHORT, icon: "review" },
 ];
 
+export const BOOK_STEPS = [
+  {
+    title: "1. Enter Name & Choose Avatar",
+    text: "We customize the character’s hair, skin tone, and gender to match your child.",
+    icon: "pencil",
+  },
+  {
+    title: "2. Dynamic Story Generation",
+    text: "Each letter of the name triggers a specific, beautifully written chapter in the book.",
+    icon: "heart",
+  },
+  {
+    title: "3. Locally Printed with Love",
+    text: "We print on premium certified eco-friendly matte paper and ship straight to your door.",
+    icon: "printer",
+  },
+];
+
 export const REVIEWS = [
   { name: "Lorem Ipsum", rating: 5, text: LOREM },
   { name: "Dolor Sit", rating: 5, text: LOREM },

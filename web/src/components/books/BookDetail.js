@@ -147,7 +147,7 @@ export default function BookDetail({ book }) {
         </section>
       </div>
 
-      <Steps />
+      <Steps variant="book" />
 
       <section className={styles.promiseSection} aria-labelledby="promise-title">
         <div className={`container ${styles.promiseGrid}`}>
