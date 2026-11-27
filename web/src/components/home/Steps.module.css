@@ -48,8 +48,13 @@
   background: var(--color-s103);
 }
 
+.bookHeader {
+  margin-bottom: var(--space-4);
+}
+
 .bookSection .band {
-  padding-block: var(--space-16);
+  padding-top: var(--space-10);
+  padding-bottom: var(--space-16);
 }
 
 .bookSection .steps {

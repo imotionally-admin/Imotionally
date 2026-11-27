@@ -46,6 +46,7 @@ export default function Steps({ variant = "home" }) {
       <div className="container">
         <SectionHeader
           id="steps-title"
+          className={isBookVariant ? styles.bookHeader : ""}
           title={isBookVariant
             ? "How Imotionally Books Are Made"
             : <>Create your book in <strong className="hl">4 easy steps</strong></>}
