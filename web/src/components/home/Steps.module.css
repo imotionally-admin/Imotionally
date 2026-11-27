@@ -45,14 +45,11 @@
 
 .bookSection {
   padding-block: var(--space-10);
+  background: var(--color-s103);
 }
 
 .bookSection .band {
   padding-block: var(--space-16);
-}
-
-.bookSection :global(h2) {
-  font-family: var(--font-body);
 }
 
 .bookSection .steps {
