@@ -2,11 +2,9 @@
 
 import { useEffect, useRef } from "react";
 import Button from "@/components/ui/Button";
-import { useToast } from "@/context/ToastContext";
 import styles from "./PersonalizeButton.module.css";
 
-export default function PersonalizeButton() {
-  const toast = useToast();
+export default function PersonalizeButton({ slug }) {
   const personalizeRef = useRef(null);
   const animationRef = useRef(null);
 
@@ -88,7 +86,7 @@ export default function PersonalizeButton() {
       <Button
         arrow={false}
         fullWidth
-        onClick={() => toast.info("Book personalization is coming soon.")}
+        href={`/books/${slug}/personalize`}
       >
         Personalize my book
       </Button>

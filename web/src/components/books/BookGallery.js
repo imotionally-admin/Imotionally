@@ -6,42 +6,41 @@ import Icon from "@/components/ui/Icon";
 import Modal from "@/components/ui/Modal";
 import styles from "./BookGallery.module.css";
 
-const COVER_IMAGE = "/CoverBook.jpg";
-const IMAGE_POSITIONS = ["75% 50%", "25% 50%", "50% 50%", "50% 25%", "50% 75%"];
+const FALLBACK_IMAGES = [{ src: "/CoverBook.jpg", alt: "Book cover preview" }];
 
-export default function BookGallery({ title }) {
+export default function BookGallery({ title, images = FALLBACK_IMAGES }) {
   const [activeIndex, setActiveIndex] = useState(0);
   const [lightboxOpen, setLightboxOpen] = useState(false);
-  const imagePosition = IMAGE_POSITIONS[activeIndex];
+  const galleryImages = images.length ? images : FALLBACK_IMAGES;
+  const currentImage = galleryImages[activeIndex] ?? galleryImages[0];
 
   function showPrevious() {
-    setActiveIndex((index) => (index - 1 + IMAGE_POSITIONS.length) % IMAGE_POSITIONS.length);
+    setActiveIndex((index) => (index - 1 + galleryImages.length) % galleryImages.length);
   }
 
   function showNext() {
-    setActiveIndex((index) => (index + 1) % IMAGE_POSITIONS.length);
+    setActiveIndex((index) => (index + 1) % galleryImages.length);
   }
 
   return (
     <>
       <div className={styles.gallery}>
         <ul className={styles.thumbnails} aria-label="Book preview images">
-          {IMAGE_POSITIONS.map((position, index) => (
-            <li key={position + index}>
+          {galleryImages.map((image, index) => (
+            <li key={`${image.src}-${index}`}>
               <button
                 type="button"
                 className={`${styles.thumbnail} ${index === activeIndex ? styles.thumbnailActive : ""}`}
-                aria-label={`View image ${index + 1} of ${IMAGE_POSITIONS.length}`}
+                aria-label={`View image ${index + 1} of ${galleryImages.length}`}
                 aria-pressed={index === activeIndex}
                 onClick={() => setActiveIndex(index)}
               >
                 <Image
-                  src={COVER_IMAGE}
+                  src={image.src}
                   alt=""
                   fill
                   sizes="(max-width: 40em) 18vw, 4.5rem"
                   className={styles.thumbnailImage}
-                  style={{ objectPosition: position }}
                 />
               </button>
             </li>
@@ -56,13 +55,12 @@ export default function BookGallery({ title }) {
             onClick={() => setLightboxOpen(true)}
           >
             <Image
-              src={COVER_IMAGE}
-              alt={`${title} book preview, image ${activeIndex + 1} of ${IMAGE_POSITIONS.length}`}
+              alt={currentImage.alt || `${title} book preview, image ${activeIndex + 1} of ${galleryImages.length}`}
               fill
               loading="eager"
               sizes="(min-width: 56em) 42vw, 100vw"
+              src={currentImage.src}
               className={styles.coverImage}
-              style={{ objectPosition: imagePosition }}
             />
           </button>
 
@@ -84,9 +82,9 @@ export default function BookGallery({ title }) {
           </button>
 
           <div className={styles.dots} aria-label="Choose image">
-            {IMAGE_POSITIONS.map((position, index) => (
+            {galleryImages.map((image, index) => (
               <button
-                key={position + index}
+                key={`${image.src}-${index}`}
                 type="button"
                 className={`${styles.dot} ${index === activeIndex ? styles.dotActive : ""}`}
                 aria-label={`Show image ${index + 1}`}
@@ -101,12 +99,11 @@ export default function BookGallery({ title }) {
       <Modal open={lightboxOpen} onClose={() => setLightboxOpen(false)} title={`${title} preview`}>
         <div className={styles.lightboxImage}>
           <Image
-            src={COVER_IMAGE}
-            alt={`${title} book preview, enlarged`}
+            src={currentImage.src}
+            alt={`${currentImage.alt || title} enlarged`}
             fill
             sizes="(min-width: 56em) 38rem, 90vw"
             className={styles.coverImage}
-            style={{ objectPosition: imagePosition }}
           />
         </div>
       </Modal>

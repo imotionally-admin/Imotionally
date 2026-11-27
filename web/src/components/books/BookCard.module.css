@@ -24,6 +24,7 @@
 }
 
 .cover {
+  aspect-ratio: 1;
   border-radius: var(--radius-xl);
   background: var(--color-s103);
 }

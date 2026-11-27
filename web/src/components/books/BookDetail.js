@@ -36,7 +36,7 @@ const PROMISES = [
   },
 ];
 
-const BOOK_FAQS = [
+const BOOK_FAQS = (book) => [
   {
     id: "personalize",
     question: "How is the book personalised?",
@@ -46,8 +46,7 @@ const BOOK_FAQS = [
   {
     id: "story",
     question: "What's the story?",
-    answer:
-      "This book is designed to make the recipient the heart of a warm, memorable adventure. The story details will be shown here as the book catalogue is connected to its full content.",
+    answer: book.description,
   },
   {
     id: "quality",
@@ -110,7 +109,7 @@ export default function BookDetail({ book }) {
 
         <section className={styles.product} aria-labelledby="book-title">
           <div className={styles.galleryArea}>
-            <BookGallery title={book.title} />
+            <BookGallery title={book.title} images={book.galleryImages} />
           </div>
 
           <div className={styles.summary}>
@@ -137,10 +136,10 @@ export default function BookDetail({ book }) {
                 <strong>{formatPrice(book.priceFrom)}</strong>
               </p>
               <div className={styles.personalizeArea}>
-                <PersonalizeButton />
+                <PersonalizeButton slug={book.slug} />
               </div>
               <div id="product-faqs" className={styles.productFaqs}>
-                <Accordion items={BOOK_FAQS} />
+                <Accordion items={BOOK_FAQS(book)} />
               </div>
             </div>
           </div>

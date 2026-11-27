@@ -12,7 +12,7 @@ export default function BookCard({ book, loading = "lazy" }) {
     <BookCardLink href={href} className={styles.cardLink}>
       <article className={styles.card}>
         <MediaFrame
-          src="/CoverBook.jpg"
+          src={book.coverImage ?? "/CoverBook.jpg"}
           ratio="square"
           label={book.title}
           sizes={COVER_SIZES}
